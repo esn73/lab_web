@@ -11,7 +11,7 @@
 		<h1>사용자 이름 입력 페이지</h1>
 		<form action="02_result.jsp" method="post">
 			<input type="text" name="userName" placeholder="이름 입력" autofocus required />
-			<input type="submit" value="전송" /> 
+			<input type="submit" value="전송"  /> 
 		</form>
 	</body>
 </html>

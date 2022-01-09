@@ -15,7 +15,7 @@
 	
 	<% 
 	/* 자바 blck comment */
-	Date today = new Date(); // 현재 시간
+	Date today = new Date();  // 현재 시간
 	
 	%>
 	

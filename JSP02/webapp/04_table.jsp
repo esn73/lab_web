@@ -16,7 +16,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>JSP scriptlet과 expression을 사용한 테이블 작성</h1>
+		<h1>JSP scriptlet과 expression을 사용한 테이블 작성 </h1>
 		<%--
 		Model 클래스 : Board
 				* boardId : 글번호(int), 
