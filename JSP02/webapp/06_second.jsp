@@ -7,6 +7,6 @@
 <title>Second Page</title>
 </head>
 <body>
-
+	<h1>Second</h1>
 </body>
 </html>

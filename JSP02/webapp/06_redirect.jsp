@@ -22,6 +22,7 @@
 	
 	<%
 	// redirect 방식 페이지 이동.
+	System.out.println("Redirect: 06_rdirect.jsp --> 06_second.jsp");
 	response.sendRedirect("06_second.jsp");
 	%>
 </body>
