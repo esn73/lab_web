@@ -10,9 +10,9 @@
 	<body>
 		<h1>숫자 입력</h1>
 		<form action="02_number_result.jsp" method="get">
-			<input type="number" name="number1" />
+			<input type="number" name="number1" step="0.1"/>
 			<br>
-			<input type="number" name="number2" />
+			<input type="number" name="number2" step="0.1"/>
 			<br>
 			<input type="submit" value="계산" />
 		</form>
