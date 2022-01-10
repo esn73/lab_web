@@ -44,11 +44,15 @@
         <jsp:useBean id="b2" class="edu.web.model.Board"></jsp:useBean>
         
         <%-- 2. 요청 파라미터(request parameter) 값들로 Java Bean 객체의 프로퍼티 값을 설정 --%>
+        <%--
         <jsp:setProperty property="boardId" name="b2" param="boardId" />
         <jsp:setProperty property="title" name="b2" param="title" />
         <jsp:setProperty property="content" name="b2" param="content" />
         <jsp:setProperty property="writer" name="b2" param="writer" />
-        
+         --%>
+         <jsp:setProperty property="*" name="b2"/>
+         <%-- 요청 파라미터를 모두 이용해서 Java bean 객체 b2의 모든 속성들의 값을 설정 --%>
+         
         <%-- 3. 출력 --%>
         <div>
         글 번호: <jsp:getProperty property="boardId" name="b2" /> <br>
