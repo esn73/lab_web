@@ -37,13 +37,15 @@
 		 <%-- Member m2 = new Member();와 동일한 내용 --%>
 		 
 		 <jsp:setProperty property="memberId"  name="m2" value="admin"/> 
+		 <%-- m2.setModelId("admin");와 동일한 내용. --%>
+		 
 		 <jsp:setProperty property="memberPassword"  name="m2" value="1234"/> 
 		 <jsp:setProperty property="memberEmail" name="m2" value="admin@itiwill.co.kr" />
-		 <%-- m2.setModelId("admin");와 동일한 내용. --%>
+		 
 		 
 		 <div>
 		 아이디: <jsp:getProperty property="memberId" name="m2"/>
-		 <%-- m2.getMem --%>
+		 <%-- <%= m2.getMember Id() %>와 동일 --%>
 		 패스워드: <jsp:getProperty property="memberPassword" name="m2"/>
 		 이메일: <jsp:getProperty property="memberEmail" name="m2"/>
 		 </div>
