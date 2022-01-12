@@ -29,6 +29,7 @@ public class Board {
 	private int replyCount;
 	private String attachment;
 	
+	// 생성자(constructor)
 	public Board() {}
 	
 	public Board(int bno, String title, String content, String userId, Date regDate, int viewCount, int replyCount,
@@ -140,9 +141,6 @@ public class Board {
 		this.attachment = attachment;
 	}
 	
-	
-	
-	
-	
+
 	
 }
