@@ -17,6 +17,17 @@
 				<h1>메인 페이지</h1>
 			</header>
 			
+			<nav><!-- 메인 페이지에서 이동할 수 있는 페이지들의 리스트 -->
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link" href="board/main">게시판 메인 페이지</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="user/main">사용자 메인 페이지</a>
+					</li>
+				</ul>
+			</nav>
+			
 		</div>
 		  <!-- Bootstrap JavaScript 파일 링크 -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
