@@ -19,6 +19,8 @@ public class DataSourceUtill {
 	private DataSourceUtill() {}
 	
 	public static DataSource getDataSource() {
+		System.out.println("DataSourceUtil.getDataSource() 메서드 호출 ");
+		
 		Context initContext;
 		Context envContext;
 		DataSource ds = null;
@@ -31,13 +33,14 @@ public class DataSourceUtill {
 			
 			// 환경 설정 정보에 정의된 리소스(jdbc/myoracle)를 찾음.
 			ds = (DataSource) envContext.lookup("jdbc/myoracle");
+			System.out.println("DataSource: " + ds);
 			
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return ds; // DattaSource리턴
+		return ds; // DataSource리턴
 	}
 	
 	public static void close(Connection conn, Statement stmt) throws SQLException {
