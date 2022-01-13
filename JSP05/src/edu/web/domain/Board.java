@@ -6,7 +6,7 @@ import java.util.Date;
 // VO(Value Object), DTO(Data Transform Object)
 public class Board {
 	public static abstract class Entry { 
-		// DB 테이블 이름, 컬럼 이름들을 상수로 정의하기 위한 내부 클래스
+		// DB 테이블 이름, 컬럼 이름들을 상수(public static final)로 정의하기 위한 내부 클래스
 		// abstract 추상클래스는 생성자를 호출할 수 없도록 하기 위해서(객체를 생성하지 못하도록)
 		public static final String TABLE_BOARD = "BOARDS" ; // 테이블 이름
 		public static final String COL_BNO = "BNO"; // 글 번호(primary key, sequence 이용)
@@ -46,11 +46,9 @@ public class Board {
 	}
 
 
-
 	public int getBno() {
 		return bno;
 	}
-
 
 
 	public void setBno(int bno) {
@@ -58,11 +56,9 @@ public class Board {
 	}
 
 
-
 	public String getTitle() {
 		return title;
 	}
-
 
 
 	public void setTitle(String title) {
@@ -70,11 +66,9 @@ public class Board {
 	}
 
 
-
 	public String getContent() {
 		return content;
 	}
-
 
 
 	public void setContent(String content) {
@@ -82,11 +76,9 @@ public class Board {
 	}
 
 
-
 	public String getUserId() {
 		return userId;
 	}
-
 
 
 	public void setUserId(String userId) {
@@ -94,17 +86,14 @@ public class Board {
 	}
 
 
-
 	public Date getRegDate() {
 		return regDate;
 	}
 
 
-
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-
 
 
 	public int getViewCount() {
@@ -118,11 +107,9 @@ public class Board {
 	}
 
 
-
 	public int getReplyCount() {
 		return replyCount;
 	}
-
 
 
 	public void setReplyCount(int replyCount) {
@@ -130,11 +117,9 @@ public class Board {
 	}
 
 
-
 	public String getAttachment() {
 		return attachment;
 	}
-
 
 
 	public void setAttachment(String attachment) {
