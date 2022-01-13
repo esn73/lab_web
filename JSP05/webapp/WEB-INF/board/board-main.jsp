@@ -26,7 +26,7 @@
 						<a class="nav-link" href="../">메인 페이지 돌아가기</a> <!-- ./현재폴더 ../한단계 위 -->
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="./insert">새 글 작성</a>
+						<a class="nav-link" href="insert">새 글 작성</a>
 					</li>
 				</ul>
 			</nav>

@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.web.controller.board.BoardInsertController;
 import edu.web.controller.board.BoardMainController;
 import edu.web.controller.user.UserMainController;
 
+
+import static edu.web.controller.Action.REDIRECT_PREFIX;
 /**
  * Servlet implementation class FrontControllerServlet
  */
@@ -44,10 +47,13 @@ public class FrontControllerServlet extends HttpServlet {
  	// 서블릿 객체가 생성될 때 필요노한 초기화 작업(환경 설정) 등을 담당.
 	public void init(ServletConfig config) throws ServletException {
 		// 요청 주소와 요청 주소를 처리할 Controller 클래스의 객체를 매핑시켜서 등록.
+		// singleton
 		commands = new HashMap<String, Action>();
 		
 		commands.put("/", new MainController()); // context path 요청을 처리할 controller
 		commands.put("/board/main", new BoardMainController());
+		commands.put("/board/insert", new BoardInsertController()); 
+		
 		commands.put("/user/main", new UserMainController() );
 	}
 
@@ -84,12 +90,20 @@ public class FrontControllerServlet extends HttpServlet {
 		String view = controller.execute(request, response); // WAS request,response 위임(delegation)
 		System.out.println("view: " + view);
 		
-		// TODO: forward vs redirect 선택
-		
-		// 요청을 View 페이지로 이동(forward)
-		request.getRequestDispatcher(view).forward(request, response);
-		
-		
+		// TODO: forward vs redirect 선택 : view가 "redirect:" 문자열로 시작하는 지를 체크
+		if (view.startsWith(REDIRECT_PREFIX)) { // view가 "redirect:" 접두사로 시작
+			//"redirect:" 접두사를 제거하고, 페이지를 redirect 방식으로 이동
+			String target = view.substring(REDIRECT_PREFIX.length());
+			System.out.println("target: " + target);
+			response.sendRedirect(target); // redirect-주소가 바뀜
+			// sendRedirect()를 호출하면 새로운 request와 response 객체가 생성되고, 
+			// 새로운 요청이 웹 서버로 전송.
+		} else {
+			// 요청을 View 페이지로 이동(forward)
+			request.getRequestDispatcher(view).forward(request, response); //forward-주소 유지
+			
+		}
+			
 		//request.getRequestDispatcher(index.jsp).forward(request, response); -> 컨트롤러를 거치지않고 jsp로 바로 보냄
 		//WEB-INF에 jsp파일을 옮김(/WEB/-INF/index.jsp)
 	}
