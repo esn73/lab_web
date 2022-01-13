@@ -10,8 +10,8 @@ import edu.web.domain.Board;
 public interface BoardDao {
 
 	String SQL_SELECT_ALL= String.format( // interface멤버변수 - public static 생략
-			"select * from %s",
-			TABLE_BOARD);
+			"select * from %s order by %s desc", // 내림차순으로 글번호를 출력
+			TABLE_BOARD, COL_BNO);
 	/**
 	 * DB BOARDS 테이블에서 전체 검색 결과를 리턴하는 메서드.
 	 * 
