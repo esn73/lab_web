@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ page trimDirectiveWhitespaces="true" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,20 +18,59 @@
 				<h1>글 상세보기 페이지</h1>
 			</header>
 			
-			${board.bno}
-			<br>
-			${board.title}
-			<br>
-			${board.content}
-			<br>
-			${board.userId}
-			<br>
-			${board.regDate}
-			<br>
-			${board.viewCount}
-			<br>
-			${board.replyCount}
-			<br>
+			<nav> <!-- navigation menu -->
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link" href="../">메인</a>					
+					</li>
+					<li class="nav-item"><a class="nav-link" href="./main">게시판 메인</a></li>
+					<li class="nav-item">
+						<!-- 수정하기	 -->
+					<a class="nav-link">수정하기</a></li>
+				</ul>
+			</nav>
+			
+			<form>
+				<div class="form-group">
+					<label for="bno">글 번호</label>
+					<input class="form-control" id="bno" name="bno"
+						type="number" value="${board.bno}" readonly/> <!-- readonly 편집을 막는 속성 -->
+				</div>
+				<div class="form-group">
+					<label for="title">제목</label>
+					<input class="form-control"  id="title" name="title"
+						type="text" value="${board.title}" readonly required />
+				</div>
+				<div class="form-group">
+					<label for="content">내용</label>
+					<textarea class="form-control" id="content" rows="5" readonly>${board.content}</textarea> 
+					<!--  cols=""는 생략가능 -->
+				</div>
+				<div class="form-group">
+					<label for="userId">작성자 아이디</label>
+					<input class="form-control"  id="userId" name="userId" type="text" 
+					value="${board.userId}" readonly required/>
+				</div>
+				<div class="form-group">
+					<label for="regDate">최종 수정 시간</label>
+					<fmt:formatDate value="${board.regDate}" 
+						pattern="yyyy-MM-dd HH:mm:ss" var="regDate" />
+						
+					<input class="form-control" id="regDate" name="regDate"
+					 type="datetime" value="${regDate}" readonly />
+				</div>
+				<div class="form-group">
+					<label for="viewCount">조회수</label>
+					<input class="form-control" id="viewCount" name="viewCount"
+						type="number" value="${board.viewCount}" readonly />
+				</div>
+				<div class="form-group">
+					<label for="replyCount">댓글 수 </label>
+					<input class="form-control"  id="replyCount" name="replyCount" type="number" value="${board.replyCount}" readonly/>
+				</div>
+								v
+			</form>
+			
 			
 			
 		</div>
