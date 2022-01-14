@@ -26,8 +26,14 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public List<Board> select() {
-		System.out.println("boardServiceImple.select() 호출");
+		System.out.println("boardServiceImple.select() 메서드 호출");
 		return boardDao.read();
+	}
+
+	@Override
+	public int registerNewBoard(Board board) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

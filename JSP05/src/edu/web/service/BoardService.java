@@ -13,5 +13,14 @@ public interface BoardService {
 	 */
 	
 	List<Board> select();
-	
+
+	/**
+	 * 새 글 작성 서비스:
+	 * (1) Boards 테이블에 새 글 insert
+	 * (2) User 테이블에서 글을 작성한 userid poits를 10점 증가
+	 * 
+	 * @param board DB boards 테이블에 insert할 title, content, userid를 가지고 있는 객체.
+	 * @return 성공하면 1, 실패하면 0.
+	 */
+	int registerNewBoard(Board board);
 }
