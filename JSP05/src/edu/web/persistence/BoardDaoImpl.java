@@ -18,12 +18,12 @@ import static edu.web.persistence.BoardDao.*;
 public class BoardDaoImpl implements BoardDao {
 	
 	// BoardDaoImple 객체는  Connection Pool에서 Connection을 빌려서 SQL 쿼리를 실행
-	private DataSource ds;
+	private DataSource ds; //connection pool
 	
 	// Singleton 패턴 적용
 	private static BoardDaoImpl instance = null;
 	private BoardDaoImpl() {
-		ds = DataSourceUtill.getDataSource();
+		ds = DataSourceUtill.getDataSource(); // WAS가 생성하고 관리하는 DataSource 객체를 얻어옴
 	}
 	
 	
@@ -82,6 +82,44 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		
 		return list;
+	}
+
+
+	@Override
+	public int create(Board board) {
+		System.out.println("boardDaoImpl.create(board) 메서드 호출");
+		
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			// Connection Pool에서 Connection 하나를 빌려옴
+			conn = ds.getConnection();
+			
+			// DB 서버에 전송할 SQL 문장 작성
+			pstmt = conn.prepareStatement(SQL_INSERT_BOARD);
+			System.out.println(SQL_INSERT_BOARD);
+			pstmt.setString(1, board.getTitle()); // SQL의 첫번째 ?를 title로 대체.
+			pstmt.setString(2, board.getContent()); // SQL의 두번째 ?를 content로 대체.
+			pstmt.setString(3, board.getUserId()); // SQL의 세번째 ?를 userId로 대체.
+			
+			// SQL 실행.
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// 사용했던 리소스 반환 - Connection 객체를 Connection Pool로 반환.
+				DataSourceUtill.close(conn, pstmt);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 
 }

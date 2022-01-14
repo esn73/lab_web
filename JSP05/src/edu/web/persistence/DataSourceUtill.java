@@ -36,7 +36,6 @@ public class DataSourceUtill {
 			System.out.println("DataSource: " + ds);
 			
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

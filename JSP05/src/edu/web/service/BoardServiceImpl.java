@@ -32,7 +32,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int registerNewBoard(Board board) {
-		// TODO Auto-generated method stub
+		System.out.println("boardServiceImpl.registerNewBoard(board) 메서드 호출");
+		
+		// boardDao 메서드를 사용해서 board 테이블에 새 글을 입력(insert)
+		// userDao의 메서드를 사용해서 users 테이블의 해당 userId의 points를 10 증가.
+		
 		return 0;
 	}
 
