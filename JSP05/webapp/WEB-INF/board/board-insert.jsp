@@ -21,12 +21,17 @@
 			</nav>
 			
 			<form action="insert" method="post"> <!-- /board/insert 요청방식은 post ** -->
-				<input class="form-control" type="text" name="title" placeholder="제목" required autofocus /><br>
-				<textarea class="form-control" rows="5" name="content" placeholder="본문" required></textarea><br>
-				<input class="form-control" type="text" name="userId" placeholder="아이디" value="admin" required/><br>
+				<input class="form-control" 
+					type="text" name="title" placeholder="제목" required autofocus /><br>
+				<textarea class="form-control" 
+					rows="5" name="content" placeholder="본문" required></textarea><br>
+				<input class="form-control" 
+					type="text" name="userId" placeholder="아이디" value="admin" required/><br>
 								
-				<input class="btn btn-success" type="submit" value="작성 완료">
-				<input class="btn btn-secondary" type="reset" value="취소" />
+				<input class="btn btn-success" 
+					type="submit" value="작성 완료">
+				<input class="btn btn-secondary" 
+					type="reset" value="취소" />
 			</form>
 		</div>
 		

@@ -42,8 +42,23 @@ public class TestServlet extends HttpServlet {
 		*/
 		
 		UserDao userDao =  UserDaoImpl.getInstance();
+		
+		/*
 		int result = userDao.update(10, "admin");
 		System.out.println("update point 결과 = " + result);
+		*/
+		
+		/*
+		Board board = dao.read(1);
+		System.out.println(board.getBno());
+		System.out.println(board.getTitle());
+		System.out.println(board.getContent());
+		System.out.println(board.getUserId());
+		System.out.println(board.getRegDate());
+		*/
+		
+		int result = dao.update(2);
+		System.out.println("조회수 증가 결과 = " + result);
 		
 	}
 

@@ -33,7 +33,7 @@ public class DataSourceUtill {
 			
 			// 환경 설정 정보에 정의된 리소스(jdbc/myoracle)를 찾음.
 			ds = (DataSource) envContext.lookup("jdbc/myoracle");
-			System.out.println("DataSource: " + ds);
+			//System.out.println("DataSource: " + ds);
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
