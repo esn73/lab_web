@@ -58,5 +58,19 @@ public interface BoardDao {
 	 * @return 조회수 증가가 성공하면 1, 실패하면 0.
 	 */
 	int update(int bno);
-			
+	
+	
+	//글 제목, 내용을 업데이트:
+	//update BOARDS set TITLE = ?, CONTENT = ? REG DATE = sysDate where bno = ?;
+	String SQL_UPDATE_TITLE_CONTENT = String.format(
+			"update %s set %s = ?, %s = ?, %s = sysdate where %s = ?", 
+			TABLE_BOARD, COL_TITLE, COL_CONTENT, COL_REG_DATE,COL_BNO);
+	/**
+	 * 게시글의 제목과 내용을 업데이트.
+	 * 
+	 * @param board 업데이트할 글 번호(bno), 제목(title), 내용(content)을 가지고 있는 Board 객체.
+	 * @return 업데이트 성공하면 1, 실패하면 0.
+	 */
+	
+	int update(Board board);
 }

@@ -15,7 +15,7 @@
 	<body>
 		<div class="container-fluid">
 			<header class="jumbotron text-center">
-				<h1>글 상세보기 페이지</h1>
+				<h1>글 수정 페이지</h1>
 			</header>
 			
 			<nav> <!-- navigation menu -->
@@ -26,11 +26,14 @@
 					<li class="nav-item"><a class="nav-link" href="./main">게시판 메인</a></li>
 					<li class="nav-item">
 						<!-- 수정하기	 -->
-					<a class="nav-link" href="./update?bno=${board.bno}">수정하기</a></li>
+					<a class="nav-link" href="./detail?bno=${board.bno}">이전 페이지</a></li>
+					<li class="nav-item">
+						<a class="nav-link">삭제</a> <!-- TODO -->
+					</li>
 				</ul>
 			</nav>
 			
-			<form>
+			<form action="update" method="post">
 				<div class="form-group">
 					<label for="bno">글 번호</label>
 					<input class="form-control" id="bno" name="bno"
@@ -39,11 +42,11 @@
 				<div class="form-group">
 					<label for="title">제목</label>
 					<input class="form-control"  id="title" name="title"
-						type="text" value="${board.title}" readonly required />
+						type="text" value="${board.title}" required />
 				</div>
 				<div class="form-group">
 					<label for="content">내용</label>
-					<textarea class="form-control" id="content" rows="5" readonly required>${board.content}</textarea> 
+					<textarea class="form-control" id="content" rows="5" >${board.content}</textarea> 
 					<!--  cols=""는 생략가능 -->
 				</div>
 				<div class="form-group">
@@ -51,23 +54,7 @@
 					<input class="form-control"  id="userId" name="userId" type="text" 
 					value="${board.userId}" readonly required/>
 				</div>
-				<div class="form-group">
-					<label for="regDate">최종 수정 시간</label>
-					<fmt:formatDate value="${board.regDate}" 
-						pattern="yyyy-MM-dd HH:mm:ss" var="regDate" />
-						
-					<input class="form-control" id="regDate" name="regDate"
-					 type="datetime" value="${regDate}" readonly />
-				</div>
-				<div class="form-group">
-					<label for="viewCount">조회수</label>
-					<input class="form-control" id="viewCount" name="viewCount"
-						type="number" value="${board.viewCount}" readonly />
-				</div>
-				<div class="form-group">
-					<label for="replyCount">댓글 수 </label>
-					<input class="form-control"  id="replyCount" name="replyCount" type="number" value="${board.replyCount}" readonly/>
-				</div>
+				<input type="submit" value="수정 완료" class="form-controll btn-outline-primary">
 								
 			</form>
 			

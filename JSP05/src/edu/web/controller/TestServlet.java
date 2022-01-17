@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.web.domain.Board;
+import edu.web.domain.User;
 import edu.web.persistence.BoardDao;
 import edu.web.persistence.BoardDaoImpl;
 import edu.web.persistence.UserDao;
@@ -28,6 +29,8 @@ public class TestServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		BoardDao dao = BoardDaoImpl.getInstance();
+		UserDao udao = UserDaoImpl.getInstance();
+		
 		/*
 		List<Board> list = dao.read();
 		for (Board b : list) {
@@ -41,8 +44,17 @@ public class TestServlet extends HttpServlet {
 		System.out.println("insert result = " + result);
 		*/
 		
-		UserDao userDao =  UserDaoImpl.getInstance();
+		List<User> list = udao.read();
+		for (User u : list) {
+			System.out.println(u.getUserid());
+		}
 		
+		UserDao userDao = UserDaoImpl.getInstance();
+		
+//		User u = new User("11", "11", "11", 0);
+//		int result2 = udao.create(u);
+//		System.out.println("insert result = " + result2);
+	
 		/*
 		int result = userDao.update(10, "admin");
 		System.out.println("update point 결과 = " + result);
@@ -57,8 +69,8 @@ public class TestServlet extends HttpServlet {
 		System.out.println(board.getRegDate());
 		*/
 		
-		int result = dao.update(2);
-		System.out.println("조회수 증가 결과 = " + result);
+//		int result = dao.update(2);
+//		System.out.println("조회수 증가 결과 = " + result);
 		
 	}
 

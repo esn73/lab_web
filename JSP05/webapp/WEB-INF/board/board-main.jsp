@@ -31,8 +31,8 @@
 				</ul>
 			</nav>
 			
-			<div><!-- 게시판 목록 테이블 -->
-			</div>
+			<!-- 게시판 목록 테이블 -->
+		
 			<table class="table table-hover">
 				<thead>
 					<tr>

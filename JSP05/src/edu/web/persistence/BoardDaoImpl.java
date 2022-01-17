@@ -194,4 +194,37 @@ public class BoardDaoImpl implements BoardDao {
 		return result;
 	}
 
+
+	@Override
+	public int update(Board board) {
+		System.out.println("boardDaoImpl.update(board) 메서드 호출");
+		
+		int result = 0;
+		
+		Connection conn =  null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(SQL_UPDATE_TITLE_CONTENT);
+			System.out.println(SQL_UPDATE_TITLE_CONTENT);
+			pstmt.setNString(1, board.getTitle()); // 업데이트할 글 제목
+			pstmt.setString(2, board.getContent()); // 업데이트할 글 내용
+			pstmt.setInt(3, board.getBno()); // 업데이트할 글 번호
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtill.close(conn, pstmt);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
 }

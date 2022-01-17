@@ -12,7 +12,7 @@ public class User {
 	}
 	
 	// 멤버 변수, 필드(field), 프로퍼티(property)
-	private String userid;
+	private String userId;
 	private String pwd;
 	private String email;
 	private int points;
@@ -21,9 +21,17 @@ public class User {
 	// 생성자(constructor)
 	public User() {}
 	
+	public User(String userId, String pwd, String email) {
+		super();
+		this.userId = userId;
+		this.pwd = pwd;
+		this.email = email;
+	}
+	
+	
 	public User(String userId, String pwd, String email, int points) {
 		super();
-		this.userid = userId;
+		this.userId = userId;
 		this.pwd = pwd;
 		this.email = email;
 		this.points = points;
@@ -31,11 +39,11 @@ public class User {
 
 	// getters $ setters
 	public String getUserid() {
-		return userid;
+		return userId;
 	}
 
-	public void setUserId(String userid) {
-		this.userid = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getPwd() {

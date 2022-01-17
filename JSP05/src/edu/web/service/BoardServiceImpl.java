@@ -16,7 +16,7 @@ public class BoardServiceImpl implements BoardService {
 	// Singleton 패턴 적용
 	private static BoardServiceImpl instance = null;
 	
-	private BoardServiceImpl() {
+	private BoardServiceImpl() { 
 		boardDao = BoardDaoImpl.getInstance();
 		userDao = UserDaoImpl.getInstance();
 	}
@@ -63,6 +63,13 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		return board;
+	}
+
+	@Override
+	public int update(Board board) {
+		System.out.println("boardServiceImpl.update(board) 메서드 호출");
+		
+		return boardDao.update(board);
 	}
 
 }

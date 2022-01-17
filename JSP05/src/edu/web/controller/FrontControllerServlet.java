@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import edu.web.controller.board.BoardDetailController;
 import edu.web.controller.board.BoardInsertController;
 import edu.web.controller.board.BoardMainController;
+import edu.web.controller.board.BoardUpeateController;
+import edu.web.controller.user.UserDetailController;
+import edu.web.controller.user.UserInsertController;
 import edu.web.controller.user.UserMainController;
 
 import static edu.web.controller.Action.REDIRECT_PREFIX;
@@ -55,8 +58,12 @@ public class FrontControllerServlet extends HttpServlet {
 		commands.put("/board/main", new BoardMainController());
 		commands.put("/board/insert", new BoardInsertController());
 		commands.put("/board/detail", new BoardDetailController());
+		commands.put("/board/update", new BoardUpeateController()); // TODO
 		
 		commands.put("/user/main", new UserMainController());
+		commands.put("/user/insert", new UserInsertController());
+		commands.put("/user/detail", new UserDetailController());
+
 	}
 
 	/**
@@ -91,7 +98,7 @@ public class FrontControllerServlet extends HttpServlet {
 		// Controller가 request를 처리한 후에 View를 만들기 위한 JSP 파일 경로를 리턴받음.
 		String view = controller.execute(request, response); // 위임(delegation)
 		System.out.println("view: " + view);
-		
+	
 		// forward vs redirect 선택 - view가 "redirect:" 문자열로 시작하는 지를 체크
 		if (view.startsWith(REDIRECT_PREFIX)) { // view가 "redirect:" 접두사로 시작
 			// "redirect:" 접두사를 제거하고, 페이지를 redirect 방식으로 이동
