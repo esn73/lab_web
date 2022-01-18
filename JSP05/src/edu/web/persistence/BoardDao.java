@@ -43,7 +43,7 @@ public interface BoardDao {
 	 * 그 결과를 리턴.
 	 * 
 	 * @param bno 글 번호 (양의 정수). 테이블의 primary key(고유키)
-	 * @return 해당 그 ㄹ번호의 게시글 전체 정보를 가지고 있는 Board 객체.
+	 * @return 해당 글 번호의 게시글 전체 정보를 가지고 있는 Board 객체.
 	 */
 	Board read(int bno);
 	

@@ -42,17 +42,16 @@
 				<tbody>
 					<c:forEach var="u" items="${User}">
 						<tr>
-							<td>${u.userId}</td>
+							<td>
+								<a href="detail?userId=${u.userId}">${u.userId}</a>
+							</td>
 							<td>${u.email}</td>
 							<td>${u.points}</td>
 						</tr>
 					</c:forEach>
-				</tbody>          
-		
+				</tbody>         
 			</table>
-			
-			<div> <!-- 검색 -->
-			</div>
+		
 			
 		</div>
 		

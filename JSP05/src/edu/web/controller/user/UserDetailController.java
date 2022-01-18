@@ -14,9 +14,11 @@ public class UserDetailController implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("userDetailController.execute() 메서드 호출");
 		// TODO 아이디를 클릭했을 때 해당 아이디(userId)의 모든 내용을 보여주는 페이지
 		// 1. request 객체에서 요청 파라미터 userId의 값을 읽음.
 		String userId = request.getParameter("userId");	
+		int userId = Integer.parseInt(request.getParameter("userId"));
 		
 		// 2. boardService 객체의 메서드를 호출해서 게시글 내용을 가져옴.
 		User user = userdService.select(userId);
