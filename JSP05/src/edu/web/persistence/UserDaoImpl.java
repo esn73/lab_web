@@ -105,7 +105,7 @@ public class UserDaoImpl implements UserDao {
 				
 				list.add(user);
 			}
-			
+			System.out.println("# of list: " + list.size());
 
 		} catch (SQLException e) {			
 			e.printStackTrace();
@@ -136,7 +136,7 @@ public class UserDaoImpl implements UserDao {
 			// DB 서버에 전송할 SQL 문장 작성
 			pstmt = conn.prepareStatement(SQL_INSERT_USER);
 			System.out.println(SQL_INSERT_USER);
-			pstmt.setString(1, user.getUserid()); 
+			pstmt.setString(1, user.getUserId()); 
 			pstmt.setString(2, user.getPwd()); 
 			pstmt.setString(3, user.getEmail()); 
 			

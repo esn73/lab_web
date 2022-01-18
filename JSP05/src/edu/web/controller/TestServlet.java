@@ -46,7 +46,7 @@ public class TestServlet extends HttpServlet {
 		
 		List<User> list = udao.read();
 		for (User u : list) {
-			System.out.println(u.getUserid());
+			System.out.println(u.getUserId());
 		}
 		
 		UserDao userDao = UserDaoImpl.getInstance();

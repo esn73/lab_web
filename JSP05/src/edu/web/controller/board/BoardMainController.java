@@ -24,7 +24,7 @@ public class BoardMainController implements Action{
 		
 		// 게시글 전체 목록을 View(JSP)에게 전달하기 위해서 request 객체에 속성 값으로 저장.
 		// JSP 포워드로 될 때는 request 객체가 유지되기 때문에, JSP에서 EL을 사용할 수 있다.
-		request.setAttribute("boardList", list);
+		request.setAttribute("boardList", list); // 변수이름, 변수값 (앞에 기준으로 
 		
 		return "/WEB-INF/board/board-main.jsp";
 	}

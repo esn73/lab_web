@@ -28,7 +28,7 @@
 						<!-- 수정하기	 -->
 					<a class="nav-link" href="./detail?bno=${board.bno}">이전 페이지</a></li>
 					<li class="nav-item">
-						<a class="nav-link">삭제</a> <!-- TODO -->
+						<a id="menuDelete" class="nav-link" href="./delete?bno=${board.bno}">삭제</a>
 					</li>
 				</ul>
 			</nav>
@@ -46,7 +46,7 @@
 				</div>
 				<div class="form-group">
 					<label for="content">내용</label>
-					<textarea class="form-control" id="content" rows="5" >${board.content}</textarea> 
+					<textarea class="form-control" id="content" name="content" rows="5" >${board.content}</textarea> 
 					<!--  cols=""는 생략가능 -->
 				</div>
 				<div class="form-group">
@@ -54,7 +54,8 @@
 					<input class="form-control"  id="userId" name="userId" type="text" 
 					value="${board.userId}" readonly required/>
 				</div>
-				<input type="submit" value="수정 완료" class="form-controll btn-outline-primary">
+				<input type="submit" value="수정 완료" class="form-control btn btn-outline-primary">
+				 
 								
 			</form>
 			
@@ -64,5 +65,25 @@
 		
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<script>
+		$(document).ready(function () {
+			// 아이디 속성이 menuDelete인 아이템을 클릭했을 때 실행할 이벤트 리스너를 등록.			
+			$('#menuDelete').click(function () {
+				// <a> 태그의 클릭 이벤트 기본 동작(요청 보내기)을 하지 못하도록 막음.
+				event.preventDefault();
+				
+				// 사용자에게 정말 삭제할 것인지 확인
+				var result = confirm('정말 삭제할까요?');
+				// console.log(result) -> 확인 true, 취소 flase 리턴.
+				
+				if (result) { // 사용자가 확인(yes)을 클릭했을 때 
+					// 페이지 이동 "/board/delete?bno=..." 이동
+					location = $(this).attr('href');
+					// $(this) -> ('#menuDelete') -> <a href>삭제</a>
+					// attr(s): 속성 s의 값을 읽음.
+				}
+			});
+		});
+		</script>
 	</body>
 </html>

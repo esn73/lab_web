@@ -1,6 +1,7 @@
 package edu.web.persistence;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,21 +17,20 @@ import static edu.web.domain.Board.Entry.*;
 import static edu.web.persistence.BoardDao.*;
 
 public class BoardDaoImpl implements BoardDao {
-	
-	// BoardDaoImple 객체는  Connection Pool에서 Connection을 빌려서 SQL 쿼리를 실행
-	private DataSource ds; //connection pool
+
+	// BoardDaoImpl 객체는 Connection Pool에서 Connection을 빌려서 SQL 쿼리를 실행.
+	private DataSource ds;
 	
 	// Singleton 패턴 적용
 	private static BoardDaoImpl instance = null;
-	private BoardDaoImpl() {
-		ds = DataSourceUtill.getDataSource(); // WAS가 생성하고 관리하는 DataSource 객체를 얻어옴
-	}
 	
+	private BoardDaoImpl() {
+		ds = DataSourceUtill.getDataSource(); // WAS가 생성하고 관리하는 DataSource 객체를 얻어옴.
+	}
 	
 	public static BoardDaoImpl getInstance() {
 		if (instance == null) {
 			instance = new BoardDaoImpl();
-			
 		}
 		return instance;
 	}
@@ -39,37 +39,34 @@ public class BoardDaoImpl implements BoardDao {
 	public List<Board> read() {
 		System.out.println("boardDaoImple.read() 메서드 호출");
 		
-		List<Board> list = new ArrayList<Board>();		
-		
+		List<Board> list = new ArrayList<Board>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs =  null;
+		ResultSet rs = null;
 		try {
-			conn =  ds.getConnection(); // Connection Pool에 있는 Connection 객체를 빌려옴.
+			conn = ds.getConnection();  // Connection Pool에 있는 Connection 객체를 빌려옴.
 			System.out.println(SQL_SELECT_ALL);
-			pstmt = conn.prepareStatement(SQL_SELECT_ALL); // SQL 문장 작성
-			rs = pstmt.executeQuery(); // DB로 SQL 문장을 전송, 실행, 결과 반환.			
 			
-			while (rs.next()) { // 커서방식 ResultSet에 레코드(행)가 있으면
+			pstmt = conn.prepareStatement(SQL_SELECT_ALL);  // SQL 문장 작성
+			rs = pstmt.executeQuery();  // DB로 SQL 문장을 전송, 실행, 결과 반환.
+			while (rs.next()) { // ResultSet에 레코드(행)가 있으면
 				// 레코드에서 각 컬럼에 있는 값들을 읽음.
-				int bno =  rs.getInt(COL_BNO);
+				int bno = rs.getInt(COL_BNO);
 				String title = rs.getString(COL_TITLE);
 				String content = rs.getString(COL_CONTENT);
-				String userid =  rs.getString(COL_USERID);
-				Date regDate =  rs.getDate(COL_REG_DATE);
-				int viewCnt =  rs.getInt(COL_VIEW_CNT);
-				int replyCnt =  rs.getInt(COL_VIEW_CNT);
-				String attachment =  rs.getString(COL_ATTACH);
+				String userid = rs.getString(COL_USERID);
+				Date regDate = rs.getDate(COL_REG_DATE);
+				int viewCnt = rs.getInt(COL_VIEW_CNT);
+				int replyCnt = rs.getInt(COL_REPLY_CNT);
+				String attachment = rs.getString(COL_ATTACH);
 				
 				// Board 객체 생성
-				Board board = new Board(bno, title, content, userid, regDate, viewCnt, replyCnt, attachment);
-				
+				Board board = new Board(bno, title, content, userid, 
+						regDate, viewCnt, replyCnt, attachment);
 				// List에 추가
 				list.add(board);
-						
 			}
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,7 +81,6 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
-
 	@Override
 	public int create(Board board) {
 		System.out.println("boardDaoImpl.create(board) 메서드 호출");
@@ -93,12 +89,11 @@ public class BoardDaoImpl implements BoardDao {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		
 		try {
-			// Connection Pool에서 Connection 하나를 빌려옴
+			// Connection Pool에서 Connection 하나를 빌려옴.
 			conn = ds.getConnection();
-			
-			// DB 서버에 전송할 SQL 문장 작성
+
+			// DB 서버에 전송할 SQL 문장 작성 
 			pstmt = conn.prepareStatement(SQL_INSERT_BOARD);
 			System.out.println(SQL_INSERT_BOARD);
 			pstmt.setString(1, board.getTitle()); // SQL의 첫번째 ?를 title로 대체.
@@ -122,7 +117,6 @@ public class BoardDaoImpl implements BoardDao {
 		return result;
 	}
 
-
 	@Override
 	public Board read(int bno) {
 		System.out.println("boardDaoImpl.read(bno=" + bno + ") 메서드 호출");
@@ -139,16 +133,17 @@ public class BoardDaoImpl implements BoardDao {
 			System.out.println(SQL_SELECT_BY_BNO);
 			pstmt.setInt(1, bno);
 			
-			rs = pstmt.executeQuery();			
+			rs = pstmt.executeQuery();
 			if (rs.next()) { // 검색된 결과가 있으면
 				String title = rs.getString(COL_TITLE);
 				String content = rs.getString(COL_CONTENT);
 				String userId = rs.getString(COL_USERID);
 				Date regDate = rs.getDate(COL_REG_DATE);
 				int viewCount = rs.getInt(COL_VIEW_CNT);
-				int replyCount =rs.getInt(COL_REPLY_CNT);
-						
-						board = new Board(bno, title, content, userId, regDate, viewCount, replyCount, null);
+				int replyCount = rs.getInt(COL_REPLY_CNT);
+				
+				board = new Board(bno, title, content, userId, regDate, 
+						viewCount, replyCount, null); 
 			}
 			
 		} catch (SQLException e) {
@@ -159,22 +154,21 @@ public class BoardDaoImpl implements BoardDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}		
-				
+		}
+		
 		return board;
 	}
 
-
 	@Override
 	public int update(int bno) {
-		System.out.println("boardDaoImpl.update(bno= " + bno +") 메서드호출");
+		System.out.println("boardDaoImpl.update(bno=" + bno + ") 메서드 호출");
 		
 		int result = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn =  ds.getConnection();
+			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(SQL_UPDATE_VIEW_COUNT);
 			System.out.println(SQL_UPDATE_VIEW_COUNT);
 			pstmt.setInt(1, bno);
@@ -188,12 +182,10 @@ public class BoardDaoImpl implements BoardDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 		}
 		
 		return result;
 	}
-
 
 	@Override
 	public int update(Board board) {
@@ -201,14 +193,15 @@ public class BoardDaoImpl implements BoardDao {
 		
 		int result = 0;
 		
-		Connection conn =  null;
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(SQL_UPDATE_TITLE_CONTENT);
 			System.out.println(SQL_UPDATE_TITLE_CONTENT);
-			pstmt.setNString(1, board.getTitle()); // 업데이트할 글 제목
-			pstmt.setString(2, board.getContent()); // 업데이트할 글 내용
+			pstmt.setString(1, board.getTitle()); // 업데이트할 글 제목
+			pstmt.setString(2, board.getContent()); // 업데이터할 글 내용
 			pstmt.setInt(3, board.getBno()); // 업데이트할 글 번호
 			
 			result = pstmt.executeUpdate();
@@ -219,12 +212,108 @@ public class BoardDaoImpl implements BoardDao {
 			try {
 				DataSourceUtill.close(conn, pstmt);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
 		return result;
+	}
+
+	@Override
+	public int delete(int bno) {
+		System.out.println("boardDaoImpl.delete(bno=" + bno + ") 메서드 호출");
+		
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = ds.getConnection(); // Connection Pool(DataSource)에서 Connection 객체 빌려옴.
+			
+			pstmt = conn.prepareStatement(SQL_DELETE); // SQL 문장 작성
+			System.out.println(SQL_DELETE);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate(); // SQL 문장 실행.
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtill.close(conn, pstmt); // 사용했던 리소스를 반환.
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Board> read(int type, String keyword) {
+		System.out.println("boardDaoImpl.read(type=" + type + ", keyword=" + keyword + ") 메서드 호출");
+		
+		List<Board> list = new ArrayList<Board>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = ds.getConnection();
+			
+			String searchKeyword = "%" + keyword.toLowerCase() + "%"; // % - % (like) 앞뒤로 포함되어있는 키워드
+			System.out.println("searchKeyword:" + searchKeyword);
+			
+			switch (type) {
+			case 1:
+				System.out.println(SQL_SELECT_BY_TITLE);
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_TITLE);
+				pstmt.setString(1, searchKeyword);
+				break;
+			case 2:
+				System.out.println(SQL_SELECT_BY_CONTENT);
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_CONTENT);
+				pstmt.setString(1, searchKeyword);
+				break;
+			case 3: //타이틀과 컨텐트로 검색하기
+				System.out.println(SQL_SELECT_BY_TITLE_OR_CONTENT);
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_TITLE_OR_CONTENT);
+				pstmt.setString(1, searchKeyword); 
+				pstmt.setString(2, searchKeyword);
+				break;
+			case 4:
+				System.out.println(SQL_SELECT_BY_USERID);
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_USERID);
+				pstmt.setString(1, searchKeyword);
+				break;
+			}
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int bno = rs.getInt(COL_BNO);
+				String title = rs.getString(COL_TITLE);
+				String content = rs.getString(COL_CONTENT);
+				String userId = rs.getString(COL_USERID);
+				Date regDate = rs.getDate(COL_REG_DATE);
+				int viewCount = rs.getInt(COL_VIEW_CNT);
+				int replyCount = rs.getInt(COL_REPLY_CNT);
+				
+				Board b = new Board(bno, title, content, userId, regDate, viewCount, replyCount, null);
+				list.add(b);
+			}
+			System.out.println("# of search: " + list.size());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtill.close(conn, pstmt, rs);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
 	}
 
 }

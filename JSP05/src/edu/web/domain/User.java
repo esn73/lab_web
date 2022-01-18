@@ -38,7 +38,7 @@ public class User {
 	}
 
 	// getters $ setters
-	public String getUserid() {
+	public String getUserId() {
 		return userId;
 	}
 

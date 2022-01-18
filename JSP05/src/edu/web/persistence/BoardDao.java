@@ -64,7 +64,7 @@ public interface BoardDao {
 	//update BOARDS set TITLE = ?, CONTENT = ? REG DATE = sysDate where bno = ?;
 	String SQL_UPDATE_TITLE_CONTENT = String.format(
 			"update %s set %s = ?, %s = ?, %s = sysdate where %s = ?", 
-			TABLE_BOARD, COL_TITLE, COL_CONTENT, COL_REG_DATE,COL_BNO);
+			TABLE_BOARD, COL_TITLE, COL_CONTENT, COL_REG_DATE, COL_BNO);
 	/**
 	 * 게시글의 제목과 내용을 업데이트.
 	 * 
@@ -73,4 +73,57 @@ public interface BoardDao {
 	 */
 	
 	int update(Board board);
+	
+	// bno로 삭제: delete from BOARD where BNO = ?;
+	String SQL_DELETE = String.format(
+			"delete from %s where %s = ?", 
+			TABLE_BOARD, COL_BNO);
+			
+	
+	/**
+	 * 삭제할 bno를 전달 받아서, board 테이블에서 해당 글 번호의 게시글을 삭제.
+	 * 
+	 * @param bno 삭제할 글번호(primary key).
+	 * @return 삭제 성공하면 1, 실패하면 0.
+	 */
+	int delete(int bno);
+	
+	// 제목으로 검색: select * from BOARDS where lower(TITLE) like ? order by BNO desc;
+	String SQL_SELECT_BY_TITLE = String.format(
+			"select * from %s where lower(%s) like ? order by %s desc", 
+			TABLE_BOARD, COL_TITLE, COL_BNO);
+	
+	// 내용으로 검색: select * from BOARDS where lower(CONTENT) like ? order by BNO desc;
+	String SQL_SELECT_BY_CONTENT = String.format(
+			"select * from %s where lower(%s) like ? order by %s desc",
+			TABLE_BOARD, COL_CONTENT, COL_BNO);
+	
+	
+	// 제목+내용 검색: select * from BOARDS where lower(TITLE) like ? lower(CONTENT) like ? order by BNO desc;
+	String SQL_SELECT_BY_TITLE_OR_CONTENT = String.format(
+			"select * from %s where lower(%s) like ? or lower(%s) like ? order by %s desc",
+			TABLE_BOARD, COL_TITLE, COL_CONTENT, COL_BNO);
+	
+	// 작성자 검색: select * from BOARD where lower(USERID) like ? order by BNO desc;
+	String SQL_SELECT_BY_USERID = String.format("", 
+			"select * from %s where lower(%s) like ? order by %s desc",
+			TABLE_BOARD, COL_USERID, COL_BNO);
+	
+	
+	/**
+	 * 검색 타입고 검색어를 전달 받아서 소문자로 바군 후 , boards 테이블에서의 검색 결과를 List<Board> 객체로 리턴
+	 * 검색 타입(제목, 내용, 제목+내용, 작성자)에 따라서
+	 * SQL_SELECT_BY_TITLE,SQL_SELECT_BY_CONTENT, SQL_SELECT_BY_TITLE_OR_CONTENT, 또는
+	 * SQL_SELECT_BY_USERID  중에서 선택해서 실행.
+	 * 
+	 * @param type 검색 타입(1-제목, 2-내용, 3-제목+내용, 4-작성자).
+	 * @param keyword 검색어.
+	 * @return 검색결과
+	 */
+	
+	
+	
+	List<Board> read(int type, String keyword);
+	
+	
 }
