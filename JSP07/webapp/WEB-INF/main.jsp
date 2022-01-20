@@ -14,14 +14,14 @@
 	</head>
 	<body>
 		<h1>메인 페이지</h1> <%-- 하나의 jsp안에 로그인,로그아웃화면 생성 --%>
-		${userId} <%-- pageScpe-getAtrribute -> requestScope.getAttribute -> sessionScop -> applicationScope  --%>
-		<c:if test="${empty userId}"> <%-- userId 변수의 값이 빈 문자열("")이거나 또는 null인 경우 --%>
+		${userId} <%-- pageScope-getAtrribute -> requestScope.getAttribute -> sessionScop -> applicationScope  --%>
+		<c:if test="${empty signInUser}"> <%-- userId 변수의 값이 빈 문자열("")이거나 또는 null인 경우 --%>
 			<%-- 로그인 되어있지 않은 경우 --%>
 			<a href="signin">로그인</a>
 		</c:if>
-		<c:if test="${not empty userId}"> <%-- userId 변수의 값의 null이 아니고, 빈 문자열("")도 아닌 경우 --%>
+		<c:if test="${not empty signInUser}"> <%-- userId 변수의 값의 null이 아니고, 빈 문자열("")도 아닌 경우 --%>
 			<%-- 로그인 되어있는 경우 --%>
-			<div>${userId}님, 환영합니다!</div>
+			<div>${signInUser}님, 환영합니다!</div>
 			<a href="signout">로그아웃</a>
 		</c:if>
 		
