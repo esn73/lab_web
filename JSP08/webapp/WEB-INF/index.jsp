@@ -31,12 +31,13 @@
 		<div>
 			<ul>
 				<li>
+					<!-- 모든 사용자가 접근 가능한 메뉴 -->
 					<a href="board/main">게시글 전체 목록 보기</a>
 				</li>
-				<li>
+				<li><!-- 로그인한 사용자만 접근 가능한 메뉴 -->
 					<a href="board/detail">게시글 상세 보기</a>
 				</li>
-				<li>
+				<li><!-- 로그인한 사용자만 접근 가능한 메뉴 -->
 					<a href="board/insert">새 글 작성하기</a>
 				</li>
 			</ul>
