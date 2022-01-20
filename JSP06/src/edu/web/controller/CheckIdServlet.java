@@ -33,7 +33,7 @@ public class CheckIdServlet extends HttpServlet {
 			resText = "invalid";
 		} else {
 			resText = "valid";
-		}
+		} 
 		
 		// 클라이언트로 응답 보냄
 		response.setCharacterEncoding("UTF-8");

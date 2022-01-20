@@ -27,8 +27,8 @@
             <h1>회원 가입 페이지</h1>
             <form action="./signup" method="post">
                 <div>
-                    <input type="text" id="userId" name="userId" 
-                        placeholder="아이디 입력" required />
+                    <input type="text" id="userId" name="userId"  
+                        placeholder="아이디 입력" required /> <!-- name:request파라미터 -->
                     <div class="invalid">이미 사용중이거나 탈퇴한 아이디입니다.</div>
                     <div class="valid">멋진 아이디네요!</div>
                 </div>
@@ -63,7 +63,7 @@
         	// input 요소에 변화가 생길 때 처리하는 이벤트 리스너를 등록 
         	/*
         	$('#userId').change(function () {
-        		console.log('on change: ' + $(this).val());
+        		console.log('on change: ' + $(this).val()); //html(), text(), val(), attr(), css() jquery에서 중요한 함수들!
         		
         		// XMLHttpRequest 생성 -> onload 콜백 등록 -> open(요청방식, 요청 주소) -> send()
         		var xhr = new XMLHttpRequest();
