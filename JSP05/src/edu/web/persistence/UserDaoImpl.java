@@ -170,7 +170,7 @@ public class UserDaoImpl implements UserDao {
 			
 			pstmt = conn.prepareStatement(SQL_SELECT_BY_USERID);
 			System.out.println(SQL_SELECT_BY_USERID);
-			pstmt.setString(0, userId);
+			pstmt.setString(1, userId);
 			
 			rs = pstmt.executeQuery();			
 			if (rs.next()) { // 검색된 결과가 있으면
@@ -178,7 +178,7 @@ public class UserDaoImpl implements UserDao {
 				String email = rs.getString(COL_EMAIL);
 				int points = rs.getInt(COL_POINTS);
 						
-				user = new User(null, pwd, email, points);
+				user = new User(userId, pwd, email, points);
 			}
 			
 		} catch (SQLException e) {
@@ -192,12 +192,6 @@ public class UserDaoImpl implements UserDao {
 		}		
 				
 		return user;
-	}
-
-	@Override
-	public User read(int userId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 

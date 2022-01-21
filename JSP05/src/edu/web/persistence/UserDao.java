@@ -1,5 +1,7 @@
 package edu.web.persistence;
 
+import static edu.web.domain.Board.Entry.COL_BNO;
+import static edu.web.domain.Board.Entry.TABLE_BOARD;
 import static edu.web.domain.User.Entry.*;
 
 import java.util.List;
@@ -44,10 +46,8 @@ public interface UserDao {
 			"select * from %s where %s = ?",
 			TABLE_USER, COL_USERID);
 	
-	
 	User read(String userId);
 	
-	User read(int userId);
 	
 	int update(int points, String userId); //updateUserPoints
 }
