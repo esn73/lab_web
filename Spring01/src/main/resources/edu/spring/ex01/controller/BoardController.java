@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.filter.CharacterEncodingFilter.*;
+
+import edu.spring.ex01.domain.Board;
 		
 
 @Controller
@@ -87,5 +89,16 @@ public class BoardController {
 		
 		return "board/insert3-result";
 		
+	}
+	
+	@RequestMapping(value = "/insert4", method = RequestMethod.GET)
+	public void boardInsert4() {
+		logger.info("boardInsert4() 호출");
+	}
+	@RequestMapping(value = "/insert4", method = RequestMethod.POST)
+	public String boardInsert4(@ModelAttribute(value="board") Board board)  {
+		logger.info("boardInsert4({}) 호출", board);
+		
+		return "board/insert4-result";
 	}
 }

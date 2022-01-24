@@ -32,4 +32,21 @@ public class SampleController {
 	// ViewResolver가 JSP 파일을 찾는 방법: ***
 	// 1) controller 메서드가 문자열을 리턴하면, 리턴하는 문자열로 JSP파일을 찾음.
 	// 2) controller 메서드가 아무것도 리턴하지 않으면, 요청 주소로 JSP 파일을 찾음
+	
+	
+	@RequestMapping(value = "forward-test", method = RequestMethod.GET)
+	public String forwardTest() {
+		logger.info("forwardTest() 호출");
+		
+		
+		return "forward:/sample1"; // sampl1 요청으로 포워드 -> jsp를 찾는게 아닌 포워드하기 위한 요청 url
+		
+	}
+	
+	@RequestMapping(value = "redirect-test", method = RequestMethod.GET)
+	public String redirectTest() {
+		logger.info("redirectTest() 호출");
+		
+		return "redirect:/sample2"; // sampl2 요청으로 리다이렉트 -> jsp를 찾는게 아닌 포워드하기 위한 요청 url
+	}
 }

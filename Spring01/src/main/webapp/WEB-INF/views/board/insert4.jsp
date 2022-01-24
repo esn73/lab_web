@@ -12,7 +12,16 @@
         	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 	</head>
 	<body>
-		<h1>Sample 2 JSP</h1>
+		<h1>새 글 작성 페이지4</h1>
+		<form method="post">
+			<input type="number" name="bno" placeholder="글 번호 입력" />
+			<br>
+			<input type="text" name="title" placeholder="글 제목 입력" />
+			<br>
+			<input type="text" name="userid" placeholder="작성자 아이디 입력" />
+			<br>
+			<input type="submit" value="작성 완료" />		
+		</form>
 		
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
