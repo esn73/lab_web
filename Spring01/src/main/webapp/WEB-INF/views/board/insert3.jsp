@@ -12,11 +12,13 @@
         	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 	</head>
 	<body>
-		<h1>새 글 작성 페이지 2</h1>
-		<form action="" method="post">
-			<input type="number" name="board-no" placeholder="글 번호 입력" />
+		<h1>새 글 작성 페이지3</h1>
+		<form method="post">
+			<input type="number" name="bno" placeholder="글 번호 입력" />
 			<br>
-			<input type="text" name="board-title" placeholder="글 제목 입력" />
+			<input type="text" name="title" placeholder="글 제목 입력" />
+			<br>
+			<input type="text" name="userid" placeholder="작성자 아이디 입력" />
 			<br>
 			<input type="submit" value="작성 완료" />		
 		</form>

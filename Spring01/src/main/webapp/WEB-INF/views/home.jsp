@@ -32,6 +32,9 @@
 	<li>
 		<a href="board/insert2">새 글 작성 2</a>
 	</li>
+	<li>
+		<a href="board/insert3">새 글 작성 3</a>
+	</li>
 	
 	
 </ul>

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +45,7 @@ public class BoardController {
 		model.addAttribute("bno", bno);
 		model.addAttribute("title", title);
 		
-		return "insert-result"; // WEB-INF/views/insert-result.jsp
+		return "board/insert-result"; // WEB-INF/views/insert-result.jsp
 	}
 	
 	@RequestMapping(value = "/insert2", method = RequestMethod.GET)
@@ -69,4 +70,22 @@ public class BoardController {
 		return "board/insert-result";
 	}
 	
+	@RequestMapping(value = "/insert3", method = RequestMethod.GET)
+	public void boardInsert3() {
+		logger.info("boardInsert3() 호출");
+	}
+	
+	@RequestMapping(value = "/insert3", method = RequestMethod.POST)
+	public String boardInsert3(
+			@ModelAttribute(value="bno") int bno, 
+			@ModelAttribute(value="title") String title,
+			@ModelAttribute(value="usrid") String userid) {
+		// @ModelAttribute가 사용된 파라미터들은 View(JSP)파일까지 전달됨.
+		
+		Object[] args = {bno, title, userid};
+		logger.info("boardInsert3({}, {}, {})", args);
+		
+		return "board/insert3-result";
+		
+	}
 }
