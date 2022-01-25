@@ -1,5 +1,7 @@
 package edu.spring.ex02;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -36,9 +38,15 @@ public class DataSourceTest {
 	@Autowired private SqlSession sqlSession;
 	
 	@Test 
-	public void doTest() {
+	public void doTest() throws SQLException {
 		logger.info("ds: {}", ds); // -> ds != null: Java bean을 스프링 프레임워크에서 주입 받음. 
-		logger.info("sessionFactory: {}", sessionFactory );																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										
+		Connection conn = ds.getConnection();
+		logger.info("connection: {}", conn);
+		
+		conn.close();
+		logger.info("connection 해제");
+		
+		logger.info("sessionFactory: {}", sessionFactory);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										
 		logger.info("sqlSession: {}", sqlSession);
 		
 		List<Board> list =  sqlSession.selectList("edu.spring.ex02.mapper.BoardMapper.selectAll"); 

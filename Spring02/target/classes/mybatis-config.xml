@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	<!-- MyBatis의 여러가지 환경 설정 -->
+	
+	<!-- 데이터베이스 테이블의 이름, 컬럼 이름들을 정의 -->
+	<properties>
+		<property name="TABLE_BOARDS" value="boards"/>
+		<property name="COL_BNO" value="bno"/>
+		<property name="COL_TITLE" value="title"/>
+		<property name="COL_CONTENT" value="content"/>
+		<property name="COL_USERID" value="userid"/>
+		<property name="COL_REG_DATE" value="reg_date"/>
+		<property name="COL_VIEW_CNT" value="view_cnt"/>
+		<property name="COL_REPLY_CNT" value="reply_cnt"/>
+		<property name="COL_ATTACHMENT" value="attachment"/>
+		
+	</properties>
+	
+	<typeAliases>
+		<package name="edu.spring.ex02.domain"/> <!-- Model패키이지름가져와서 import처럼 사용 보드매퍼에 클래스앞까지 작성가능-->
+	</typeAliases>
+	
 </configuration>
