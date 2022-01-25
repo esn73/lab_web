@@ -8,4 +8,7 @@ import edu.spring.ex02.domain.Board;
 public interface BoardDao {
 
 	public List<Board> read();
+	Board read(int bno);
+	int create(Board board); // board.getTitle(), board.getContent(), board.getUserid()
+	//과제
 }
