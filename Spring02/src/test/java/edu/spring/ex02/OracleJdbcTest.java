@@ -21,8 +21,8 @@ import oracle.jdbc.OracleDriver;
 // 2. 테스트를 실행하기 위해서 필요한 환경 설정 정보 파일들(*-context.xml)의 위치.
 // root-context.xml, appServlet/servlet-context.xml
 @ContextConfiguration(
-		locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml"}
-		)
+		locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml"} //"/WEB-INF/spring/appServlet/servlet-context.xml"} //"
+		) // ** 하위폴더가 있을수도 있고 없을수도잇음
 // 3. 배포 관리자(deployment descriptor, web.xml)의 환경 설정 정보 사용.
 @WebAppConfiguration
 public class OracleJdbcTest {

@@ -4,5 +4,20 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 스프링 프레임워크에서 생성하고 관리하는 객체(bean)들을 설정 
+		DataSource, SqlSession, Service 계층 bean, Persistence 계층 bean
+	-->
 		
+	<!-- Oracle DataSource(DBCP: Database Connection Pool) 객체(bean) 설정 -->
+	<!-- DataSource ds = new DriverManagerDataSource(); ds.setDriverClassName("oracle.jdbc.OrcleDriver");
+	property 클래스 객체의 변수로 생각하면 됌 ds.setDriverClassName("");-->
+	
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"	>
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="scott" />
+		<property name="password" value="tiger" />		
+	</bean>
+	
 </beans>
