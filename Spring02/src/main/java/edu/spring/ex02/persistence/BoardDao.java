@@ -11,4 +11,10 @@ public interface BoardDao {
 	Board read(int bno);
 	int create(Board board); // board.getTitle(), board.getContent(), board.getUserid()
 	//과제
+	int update(Board board);
+	int updateViewCnt(int bno);
+	int delete(int bno);
+	List<Board> read(int type, String keyword);
+	
+
 }

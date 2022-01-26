@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.spring.ex02.mapper.BoardMapper">
 	<!-- mapper: SqlSession 객체라 실행시킬 SQL 문장 -->
-
 	<!-- mybatis-config.xml 파일에서
 		(1) typeAilases가 설정되어있어서, resultType의 클래스 이름을 패키지 이름 생략하고 생략 가능.
 		(2) 테이블 이름과 컬럼 이름들이 프로퍼티로 정의가 되어 있어서, SQL 문장에서 프로퍼티들을 사용 가능.
@@ -48,4 +47,25 @@
 	DELETE FROM ${TABLE_BOARDS}
 	WHERE ${COL_BNO} = #{bno}
 	</update>
+	<!--  키워드 검색:(1) 제목, (2) 내용, (3)제목+내용 (4) 작성자 아이디  -->
+	<!-- Dynamic Query -->
+	<select id="selectByKeyword" resultType="Board">
+	SELECT * FROM ${TABLE_BOARDS} 
+		<if test="type == 1">
+		WHERE lower(${COL_TITLE}) LIKE #{keyword}
+		</if>
+		<if test="type == 2">
+		WHERE lower(${COL_CONTENT) LIKE #{keyword}
+		</if>
+		<if test="type == 3">
+		WHERE lower(${COL_TITLE) LIKE #{keyword} or lower(${COL_CONTENT})
+		</if>
+		<if test="type == 4">
+		WHERE lower(${COL_USERID) LIKE #{keyword}
+		</if>
+	ORDER BY ${COL_BNO} DESC
+	</select>
+	
+	
+
 </mapper>

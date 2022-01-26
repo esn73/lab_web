@@ -1,6 +1,8 @@
 package edu.spring.ex02.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -23,7 +25,7 @@ public class BoardDaoImpl implements BoardDao {
 	public List<Board> read() {
 		logger.info("boardDaoImple.read() 호출");
 		
-		return sqlSession.selectList(BOADR_NAMESPACE + ".selectAll");
+		return sqlSession.selectList(BOADR_NAMESPACE + ".selectAll"); //sql문장을 찾아감
 	}
 	
 	@Override
@@ -39,5 +41,39 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return sqlSession.insert(BOADR_NAMESPACE +".create", board);
 	}
+	
+	@Override
+	public int update(Board board) {
+		logger.info("boardDaoImpl.update(bno={} 호출", board);
+		
+		return sqlSession.selectOne(BOADR_NAMESPACE + ".update", board);
+	}
+	@Override
+	public int updateViewCnt(int bno) {
+		logger.info("boardDaoImpl.updateViewCnt(bno={} 호출", bno);
+		
+		return sqlSession.selectOne(BOADR_NAMESPACE + ".updateViewCnt", bno);
+	}
+	@Override
+	public int delete(int bno) {
+		logger.info("boardDaoImpl.delete(bno={} 호출", bno);
+		
+		return sqlSession.selectOne(BOADR_NAMESPACE + ".delete", bno);
+	}
+
+	@Override
+	public List<Board> read(int type, String keyword) {
+		logger.info("boardDaoImpl.read(type={}, keyword={})", type, keyword);
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("type", type);
+		params.put("keyword", "%" + keyword.toLowerCase() + "%");
+		
+		return sqlSession.selectList(BOADR_NAMESPACE + ".selectByKeyword", params);
+	}
+	
+	
+	
+	
 
 }

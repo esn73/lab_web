@@ -19,7 +19,7 @@ import edu.spring.ex02.persistence.BoardDao;
 		locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" }
 		)
 
-@WebAppConfiguration
+@WebAppConfiguration //POJO
 public class BoardDoaTest {
 	private static final Logger logger = LoggerFactory.getLogger(BoardDoaTest.class);
 	
@@ -34,9 +34,22 @@ public class BoardDoaTest {
 //		Board board = boardDao.read(1);
 //		logger.info(board.toString());
 		
-		Board board = new Board(0, "myBatis-Spring test", "마이바티스 스프링 테스트", "admin", null, 0, 0, null);
-		int result = boardDao.create(board);
-		logger.info("INSERT 결과: {}", result);
+//		Board board = new Board(0, "myBatis-Spring test", "마이바티스 스프링 테스트", "admin", null, 0, 0, null);
+//		int result = boardDao.create(board);
+//		logger.info("INSERT 결과: {}", result);
+//		
+//		Board board = new Board(2, "수정성공?", "MyBatis를 사용한 SQL UPDATE", null, null, 0, 0, null);
+//		int result = boardDao.update(board);
+//		logger.info("UPDATE 결과: {}", result);
+	
+//		int result = boardDao.updateViewCnt(1);
+//		logger.info("updateViewCnt 결과: {}", result);
+		
+//		int result = boardDao.delete(22);
+//		logger.info("updateViewCnt 결과: {}", result);
+		
+		List<Board> list = boardDao.read(4, "TEST");
+		logger.info("키워드 검색 결과: {}개 행", list.size());
 	}
 	
 }
