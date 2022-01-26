@@ -48,7 +48,7 @@ public class BoardDoaTest {
 //		int result = boardDao.delete(22);
 //		logger.info("updateViewCnt 결과: {}", result);
 		
-		List<Board> list = boardDao.read(4, "TEST");
+		List<Board> list = boardDao.read(3, "TEST");
 		logger.info("키워드 검색 결과: {}개 행", list.size());
 	}
 	
