@@ -19,8 +19,7 @@ public class BoardController {
 	private static final Logger log = LoggerFactory.getLogger(BoardController.class);
 	
 	// Service 계층의 객체들을 주입(injection)받아서 사용.
-	@Autowired private BoardService boardService;
-	
+	@Autowired private BoardService boardService;	
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public void main(Model model) {
@@ -33,4 +32,40 @@ public class BoardController {
 		
 		// controller 메서드가 리턴하는 문자열이 없으면 요청 주소로 View(jsp 파일)을 찾음.
 	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public void insert() {
+		log.info("insert() GET 방식 호출");
+	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String insert(Board board) {
+		log.info("insert({}, {}, {}, POST 호출", board);
+		
+		// 클라이언트에서 보낸 데이터들을 서비스 계층의 객체 (메서드)를 사용해서 새 글 작성 서비스 완료 휴
+		// 게시판 메인 페이지로 이동(redirect)
+		boardService.insert(board);	
+		return "redirect:/board/main";
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public void detail(int bno, Model model) {
+		log.info("detail(bno={} GET 호출", bno);
+		
+		// TODO: 서비스 계층의 객체(메서드)를 사용해서 해당 글 번호(bno)를 검색하고
+		// 검색된 내용을 View(JSP)에게 전달.
+		Board board = boardService.select(bno);
+		model.addAttribute("board", board);
+	}
+	
+	@RequestMapping (value = "/update", method= RequestMethod.GET)
+	public void update(int bno, Model model) {
+		log.info("update(bno={}) GET 호출", bno);
+		
+		Board board = boardService.select(bno);
+		model.addAttribute("board", board);
+	}
+	
+	
+	
 }

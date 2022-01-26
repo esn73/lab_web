@@ -27,4 +27,22 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.read();
 	}
 
+	@Override
+	public int insert(Board board) {
+		log.info("insert({}) 호출", board);
+		
+		// (1) boards 테이블에 새 글 insert
+		int result = boardDao.create(board);
+		// (2) TODO: 글을 작성한 사용자의 points를 10점 증가.
+		
+		return result;
+	}
+
+	@Override
+	public Board select(int bno) {
+		log.info("select(bno={}");
+		
+		return boardDao.read(bno);
+	}
+
 }
