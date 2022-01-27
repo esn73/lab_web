@@ -16,51 +16,53 @@ import edu.spring.ex02.domain.Board;
 // root-context.xml 파일에서 <context:component-scan>에 의해서 Java bean이 생성, 관리됨.
 public class BoardDaoImpl implements BoardDao {
 	private static final Logger logger = LoggerFactory.getLogger(BoardDaoImpl.class);
-	private static final String BOADR_NAMESPACE = "edu.spring.ex02.mapper.BoardMapper";
-	
+	private static final String BOARD_NAMESPACE = "edu.spring.ex02.mapper.BoardMapper";
+
 	// root-context.xml로 관리되고 있는 Java bean 객체를 주입(injection)받음.
 	@Autowired private SqlSession sqlSession;
-
+	
 	@Override
 	public List<Board> read() {
-		logger.info("boardDaoImple.read() 호출");
+		logger.info("boardDaoImpl.read() 호출");
 		
-		return sqlSession.selectList(BOADR_NAMESPACE + ".selectAll"); //sql문장을 찾아감
+		return sqlSession.selectList(BOARD_NAMESPACE + ".selectAll");
 	}
 	
 	@Override
 	public Board read(int bno) {
-		logger.info("boardDaoImpl.read(bno={} 호출", bno);
+		logger.info("boardDaoImpl.read(bno={}) 호출", bno);
 		
-		return sqlSession.selectOne(BOADR_NAMESPACE + ".selectByBno", bno);
+		return sqlSession.selectOne(BOARD_NAMESPACE + ".selectByBno", bno);
 	}
 	
 	@Override
 	public int create(Board board) {
 		logger.info("boardDaoImpl.create({}) 호출", board);
 		
-		return sqlSession.insert(BOADR_NAMESPACE +".create", board);
+		return sqlSession.insert(BOARD_NAMESPACE + ".create", board);
 	}
 	
 	@Override
 	public int update(Board board) {
-		logger.info("boardDaoImpl.update(bno={} 호출", board);
+		logger.info("boardDaoImpl.update({}) 호출", board);
 		
-		return sqlSession.selectOne(BOADR_NAMESPACE + ".update", board);
+		return sqlSession.update(BOARD_NAMESPACE + ".update", board);
 	}
+	
 	@Override
 	public int updateViewCnt(int bno) {
-		logger.info("boardDaoImpl.updateViewCnt(bno={} 호출", bno);
+		logger.info("boardDaoImpl.updateViewCnt(bno={}) 호출", bno);
 		
-		return sqlSession.selectOne(BOADR_NAMESPACE + ".updateViewCnt", bno);
+		return sqlSession.update(BOARD_NAMESPACE + ".updateViewCnt", bno);
 	}
+	
 	@Override
 	public int delete(int bno) {
-		logger.info("boardDaoImpl.delete(bno={} 호출", bno);
+		logger.info("boardDaoImpl.delete(bno={})", bno);
 		
-		return sqlSession.selectOne(BOADR_NAMESPACE + ".delete", bno);
+		return sqlSession.delete(BOARD_NAMESPACE + ".delete", bno);
 	}
-
+	
 	@Override
 	public List<Board> read(int type, String keyword) {
 		logger.info("boardDaoImpl.read(type={}, keyword={})", type, keyword);
@@ -69,11 +71,7 @@ public class BoardDaoImpl implements BoardDao {
 		params.put("type", type);
 		params.put("keyword", "%" + keyword.toLowerCase() + "%");
 		
-		return sqlSession.selectList(BOADR_NAMESPACE + ".selectByKeyword", params);
+		return sqlSession.selectList(BOARD_NAMESPACE + ".selectByKeyword", params);
 	}
 	
-	
-	
-	
-
 }
