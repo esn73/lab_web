@@ -27,12 +27,12 @@ public class BoardDoaTest {
 	
 	@Test
 	public void doTest() {
-		logger.info("boardDao: {}", boardDao);
+//		logger.info("boardDao: {}", boardDao);
 //		List<Board> list = boardDao.read();
 //		logger.info("list size = {}", list.size());
 
-//		Board board = boardDao.read(1);
-//		logger.info(board.toString());
+		Board board = boardDao.read(1);
+		logger.info(board.toString());
 		
 //		Board board = new Board(0, "myBatis-Spring test", "마이바티스 스프링 테스트", "admin", null, 0, 0, null);
 //		int result = boardDao.create(board);
@@ -48,8 +48,8 @@ public class BoardDoaTest {
 //		int result = boardDao.delete(22);
 //		logger.info("updateViewCnt 결과: {}", result);
 		
-		List<Board> list = boardDao.read(3, "TEST");
-		logger.info("키워드 검색 결과: {}개 행", list.size());
+//		List<Board> list = boardDao.read(3, "TEST");
+//		logger.info("키워드 검색 결과: {}개 행", list.size());
 	}
 	
 }
