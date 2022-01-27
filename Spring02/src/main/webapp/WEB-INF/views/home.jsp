@@ -23,7 +23,7 @@
 					<a href="./user/register">회원가입</a>
 				</li>
 				<li>
-					<!-- TODO --> <a href="">로그인</a>
+					<!-- TODO --> <a href="./user/signin">로그인</a>
 				</li>
 				<li><a href="./board/main">게시판 메인</a></li>
 			</ul>

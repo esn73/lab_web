@@ -42,13 +42,16 @@ public class UserController {
 	public String checkUserId(String userid) {
 		log.info("checkUserId(userid={})", userid);
 		
-		if (userService.inValidId(userid)) {
+		if (userService.isValidId(userid)) {
 			return "valid";
 		} else {
 			return "invalid";
 		}
+	}
 		
-	
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public void signIn() {
+		log.info("signIn() GET 호출");
 		
 	}
 	

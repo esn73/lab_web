@@ -62,12 +62,12 @@
 			//userid 아이디를 갖는 HTML 요소(input)에 변화가 생겼을 때 호출될 이벤트 리스너 콜백 함수를 등록.
 			$('#userid').change(function (event) {
 				// Ajax를 이용해서 아이디 중복 체크
-				var params = { userid: $(this).val() };
+				var params = { userid: $(this).val() }; // this->userid 메서드 val호출
 				// $.post(Ajax 요청 주소, 요청 파라미터, 응답 성공일 떄 실행될 콜백 함수);
 				$.post('./checkid', params, function (response) {
 					if (response == 'valid') { // 사용 가능한 아이디(DB에 없는 아이디)인 경우
 						$('.valid').show(); // valid div 보여줌
-						$('.invalid').hide(); // valid div 없앰
+						$('.invalid').hide(); // valid div 없앰(display = none).
 						$('#btn-complete').removeAttr('disabled'); // 버튼 활성화
 					} else {
 						$('.valid').hide(); // valid div 없앰(display = none).
