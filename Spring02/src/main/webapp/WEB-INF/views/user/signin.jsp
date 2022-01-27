@@ -21,7 +21,7 @@
 			</nav>
 			
 			<div>
-				<form action="">
+				<form action="./signin" method="post">
 					<div>
 						<input type="text" name="userid" placeholder="아이디 입력" required />
 					</div>

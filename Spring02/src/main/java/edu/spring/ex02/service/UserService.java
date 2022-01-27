@@ -6,4 +6,5 @@ public interface UserService {
 
 	int registerNewUser(User user);
 	boolean isValidId(String userid);
+	User checkSignIn(User user);
 }

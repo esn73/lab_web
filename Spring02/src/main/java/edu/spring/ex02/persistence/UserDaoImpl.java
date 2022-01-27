@@ -30,4 +30,10 @@ public class UserDaoImpl implements UserDao {
 		log.info("checkUserId(userid={}) 호출", userid);
 		return mapper.selectByUserId(userid);
 	}
+	
+	@Override
+	public User read(User user) {
+		log.info("read() 호출", user);
+		return mapper.selectByIdAndPwd(user);
+	}
 }

@@ -34,8 +34,13 @@ public class UserServiceImpl implements UserService {
 		} else { // DB 테이블에 해당 userid가 있는 경우 -> 가입 불가능한 아이디
 			return false;
 		}
-
 		
 	}
-
+	
+	@Override
+	public User checkSignIn(User user) {
+		log.info("checkSignIn({}) 호출", user);
+		
+		return userDao.read(user);
+	}
 }

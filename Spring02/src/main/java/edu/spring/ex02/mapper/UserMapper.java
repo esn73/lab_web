@@ -23,4 +23,11 @@ public interface UserMapper {
 	
 	@Select(CHECK_UESR_ID)
 	User selectByUserId(String userid);
+	
+	//로그인 아이디/비밀번호 비교
+	String CHECK_SIGN_IN =
+	"SELECT * FROM ${TABLE_USERS} WHERE ${COL_USERID} = #{userid} AND ${COL_PWD} = #{pwd}";
+	
+	@Select(CHECK_SIGN_IN)
+	User selectByIdAndPwd(User user);
 }
