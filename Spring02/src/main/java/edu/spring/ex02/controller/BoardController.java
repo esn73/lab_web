@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.spring.ex02.domain.Board;
 import edu.spring.ex02.service.BoardService;
@@ -61,7 +62,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public void update(int bno, Model model) {
+	public void update(int bno, Model model) { // 
 		log.info("update(bno={}) GET 호출", bno);
 		
 		Board board = boardService.select(bno);
@@ -79,11 +80,22 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(int bno) {
+	public String delete(int bno) { // 
 		log.info("delete(bno={}) 호출", bno);
 		
 		boardService.delete(bno);
 		
 		return "redirect:/board/main";
+	}
+	
+	@RequestMapping(value = "/serach", method = RequestMethod.GET)
+	public String search(int type, String keyword, Model model) { //@RequestParam()을 설정할 경우 jsp파일과 name이 달라도 찾을 수 있음
+		log.info("serch(type={}, keyword={}", type, keyword);
+		
+		List<Board> list = boardService.select(type, keyword);
+		//검색 결과를 Model 객체에 속성(attribute)
+		model.addAttribute("boardList", list); // jsp 파일에서 ${boardList} EL로 사용되기 때문에.
+		
+		return "board/main"; // /WEB-INF-/views/board/main.jsp 파일을 view로 사용 - 서블릿
 	}
 }

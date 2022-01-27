@@ -58,5 +58,12 @@ public class BoardServiceImpl implements BoardService {
 		
 		return boardDao.delete(bno);
 	}
+
+	@Override
+	public List<Board> select(int searchType, String searchKeyword) {
+		log.info("select(serachType={}, serachType={}", searchType, searchKeyword);
+		
+		return boardDao.read(searchType, searchKeyword);
+	}
 	
 }

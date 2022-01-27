@@ -33,6 +33,19 @@
                 </ul>
             </nav>
             
+            <div> <!-- 검색 기능 UI -->
+            	<form action="./serach" mehtod="get">
+            		<select name="type"> <!-- SQL 순서 -->
+            			<option value="1">제목</option>
+            			<option value="2">내용</option>
+            			<option value="3">제목+내용</option>
+            			<option value="4">글쓴이</option>
+            		</select>
+            		<input type="text" name="keyeord" placeholder="검색어 입력" required />
+            		<input type="submit" value="검색" />
+            	</form>
+            </div>
+            
             <div>
                 <table>
                     <thead>
