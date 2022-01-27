@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.spring.ex02.domain.User;
 import edu.spring.ex02.service.UserService;
@@ -32,4 +33,23 @@ public class UserController {
 		
 		return "redirect:/"; // http://localhost:8181/ex02/ 로 redirect
 	}
+	
+	@RequestMapping(value="/checkid", method = RequestMethod.POST)
+	@ResponseBody
+	// controller 메서드가 리턴하는 문자열이 jsp파일 경로 이거나 혹은 페이지 이동(forward, redirect) 주소가 아니라, 
+	// 클라이언트로 전송되는 응답(response) 문자열임을 선언하는 어노테이션.
+	
+	public String checkUserId(String userid) {
+		log.info("checkUserId(userid={})", userid);
+		
+		if (userService.inValidId(userid)) {
+			return "valid";
+		} else {
+			return "invalid";
+		}
+		
+	
+		
+	}
+	
 }
