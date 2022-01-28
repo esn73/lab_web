@@ -53,8 +53,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	public void signIn() {
+	public void signIn(String url, Model model) {
 		log.info("signIn() GET 호출");
+		
+		// 로그인 페이지가 요청 됐을 때, 로그인 성공 후 이동할 페이지가 질의 문자열에 포함되어 있는 경우
+		if (url != null && !url.equals("")) { 
+			model.addAttribute("url", url); // 로그인 이후 이동할 페이지를 저장.
+		}
 	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
