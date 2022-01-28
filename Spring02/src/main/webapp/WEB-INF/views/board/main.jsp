@@ -29,8 +29,8 @@
 					</li>
 				</c:if>
 				<c:if test="${not empty singInUserId}">
-					<li>
-					<a href="../user/signout"></a>
+					<li><span>${singInUserId}</span>
+						<a href="../user/signout">로그아웃</a>
 					</li>
 				</c:if>
 				<li><a href="../">메인</a></li>
@@ -81,9 +81,19 @@
 
 	</div>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+	<script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+	$(document).read(function () {
+		//console.log(location.href);
+		// 로그인 링크(a 태그)를 클릭했을 때 동작을 바꿈.
+		$('#menu-login').click(function (event) {
+			// 링크를 클릭하면 href 속성 값의 페이지로 이동하는 동작을 막음.
+			event.preventDefault();
+			// 새로운 페이지로 이동
+			location = encodeURI('/ex02/user/signin?url=' + location.href);
+		});
+	});
+	</script>
 </body>
 </html>

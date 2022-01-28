@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>ex02</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,7 +22,10 @@
                 <ul>
                     <li><a href="../">메인</a></li>
                     <li><a href="./main">게시판 메인</a></li>
+                    <c:if test="${signInUserId == board.userid}">
+                    <%--로그인 사용자 아이디와 글 작성자 아이디가 일치할 때만 수정 메뉴를 보여줌. --%>
                     <li><a href="./update?bno=${board.bno}">수정</a></li>
+                    </c:if>
                 </ul>
             </nav>
             
