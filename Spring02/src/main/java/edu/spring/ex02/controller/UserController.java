@@ -1,11 +1,14 @@
 package edu.spring.ex02.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,18 +58,23 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
-	public String signIn(User user, HttpSession session) {
+	public void signIn(User user, Model model) {//HttpSession session
 		log.info("signIn({}) POST 호출", user);
 		
 		User signInUser = userService.checkSignIn(user);
-		if (signInUser != null) { // 아이디, 비밀번호가 일치하는 사용자 정보가 테이블에 있으면(not null)
-			// 로그인 정보를 세션에 저장 -> 메인 이동
-			session.setAttribute("signInUserId", signInUser.getUserid());
-			return "redirect:/";
-		} else { // 아이디, 비빌번호가 일치하는 사용자 정보가 테이블에 없으면(null)
-			// 로그인 실패 -> 로그인 페이지 다시 보여주기
-			return "redirect:/user/signin";
-		}
+		log.info("signInUser: {}", signInUser); //-> 로그인 0: not null, 로그인 X: null
+		
+		// 로그인 여부를 판단할 수 있는 정보를 Model 객체에 속성으로 저장.
+		model.addAttribute("signInUser", signInUser);
+		
+//		if (signInUser != null) { // 아이디, 비밀번호가 일치하는 사용자 정보가 테이블에 있으면(not null)
+//			// 로그인 정보를 세션에 저장 -> 메인 이동
+//			session.setAttribute("signInUserId", signInUser.getUserid());
+//			return "redirect:/";
+//		} else { // 아이디, 비빌번호가 일치하는 사용자 정보가 테이블에 없으면(null)
+//			// 로그인 실패 -> 로그인 페이지 다시 보여주기
+//			return "redirect:/user/signin";
+//		}
 	}
 
 	@RequestMapping(value = "/signout", method = RequestMethod.GET)
