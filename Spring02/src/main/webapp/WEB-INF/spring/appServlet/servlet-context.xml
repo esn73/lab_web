@@ -26,11 +26,12 @@
 	
 	<!-- Interceptor 설정: (1) Bean 생성, 관리. (2) URL 매핑 -->
 	<!-- HanderIntercept authInterceptor = new AuthInterceptor(); -->
-	<beans:bean id="authIntercepotr" class="edu.java.ex02.interceptor.AuthInterceptor"></beans:bean>
+	<beans:bean id="authIntercepotr" class="edu.spring.ex02.interceptor.AuthInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/board/insert" /> <!-- 새 글 작성 -->
+			<mapping path="/board/detail"/> <!-- 상세 보기 -->
 			<beans:ref bean="authIntercepotr"/>	
 		</interceptor>
 	</interceptors>
