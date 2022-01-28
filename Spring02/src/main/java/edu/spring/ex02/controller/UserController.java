@@ -73,7 +73,7 @@ public class UserController {
 	public String signOut(HttpSession session) {
 		// 세션에 저장된 로그인 정보(로그인 사용자 아이디)를 제거 -> 메인 페이지로 이동.
 		session.removeAttribute("signInUserId");
-		session.invalidate();
+		session.invalidate(); // 세션을 메모리에서 지움
 		
 		return "redirect:/";
 	}
