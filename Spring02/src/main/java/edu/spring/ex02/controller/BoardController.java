@@ -88,9 +88,9 @@ public class BoardController {
 		return "redirect:/board/main";
 	}
 	
-	@RequestMapping(value = "/serach", method = RequestMethod.GET)
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(int type, String keyword, Model model) { //@RequestParam()을 설정할 경우 jsp파일과 name이 달라도 찾을 수 있음
-		log.info("serch(type={}, keyword={}", type, keyword);
+		log.info("search(type={}, keyword={}", type, keyword);
 		
 		List<Board> list = boardService.select(type, keyword);
 		//검색 결과를 Model 객체에 속성(attribute)
