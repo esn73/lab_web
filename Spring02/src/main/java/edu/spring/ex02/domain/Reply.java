@@ -9,18 +9,16 @@ public class Reply {
 	private String userid; // 댓글 작성자 아이디. users 테이블을 찾아가는 FK.
 	private Date regdate; // 작성 시간
 	private int bno; // 몇 번 글에 대한 댓글인지, boards 테이블을 찾아가는 FK.
-	private int orgrno;
 	
 	private Reply() {}
 
-	public Reply(int rno, String rtext, String userid, Date regdate, int bno, int orgrno) {
+	public Reply(int rno, String rtext, String userid, Date regdate, int bno) {
 		super();
 		this.rno = rno;
 		this.rtext = rtext;
 		this.userid = userid;
 		this.regdate = regdate;
 		this.bno = bno;
-		this.orgrno = orgrno;
 	}
 
 	public int getRno() {
@@ -63,13 +61,6 @@ public class Reply {
 		this.bno = bno;
 	}
 
-	public int getOrgrno() {
-		return orgrno;
-	}
-
-	public void setOrgrno(int orgrno) {
-		this.orgrno = orgrno;
-	}
 	
 	@Override
 	public String toString() {
