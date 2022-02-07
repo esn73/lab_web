@@ -7,4 +7,21 @@
 	VALUES (#{rtext}, #{userid}, #{bno})
 	</insert>
 
+	<select id="select" resultType="Reply">
+	SELECT * FROM ${TABLE_REPLIES}
+	WHERE ${COL_BNO} = #{bno}
+	ORDER BY ${COL_BNO) desc
+	</select>
+	
+	<update id="update">
+	UPDATE ${TABLE_REPLIES}
+	SET ${COL_RTEXT} = #{rtext}, ${COL_REGDATE} = sysdate
+	WHERE ${COL_RNO} = #{rno}
+	</update>
+	
+	<delete id="delete">
+	DELETE FROM ${TABLE_REPLIES} WHERE ${COL_RNO} = #{rno}
+	
+	</delete>
+
 </mapper>

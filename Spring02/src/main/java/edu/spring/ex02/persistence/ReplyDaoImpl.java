@@ -1,5 +1,7 @@
 package edu.spring.ex02.persistence;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,28 @@ public class ReplyDaoImpl implements ReplyDao{
 		log.info("create({}) 호출", reply);
 		
 		return sqlSession.insert(NAMESPACE + ".insert", reply);
+	}
+
+	@Override
+	public List<Reply> read(int bno) {
+		log.info("read(bno={} 호출)", bno);
+		
+		return sqlSession.selectList(NAMESPACE + ".select", bno);
+	}
+
+	@Override
+	public int update(Reply reply) {
+		log.info("update(bno={} 호출)", reply);
+		
+		return sqlSession.update(NAMESPACE + ".update", reply);
+	}
+
+	@Override
+	public int delete(int rno) {
+		log.info("delete(rno={}) 호출", rno);
+		
+		return sqlSession.delete(NAMESPACE + ".delete", rno);
+		
 	}
 
 }
