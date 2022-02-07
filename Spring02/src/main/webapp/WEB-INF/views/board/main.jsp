@@ -53,8 +53,8 @@
                 </form>
             </div>
             
-            <div>
-                <table>
+            <div class="container">
+                <table class="table table-blue table-striped" >
                     <thead>
                         <tr>
                             <th>글 번호</th>
