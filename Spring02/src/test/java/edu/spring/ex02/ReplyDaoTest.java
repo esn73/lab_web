@@ -45,7 +45,7 @@ public class ReplyDaoTest {
 		Reply reply = new Reply(1, "댓글 수정 테스트", null, null, 0);
 		int result  = replyDao.update(reply);
 		log.info("update result: {}", result);
-		*/
+		*/ 
 		
 		int result = replyDao.delete(1);
 		log.info("delete result: {}", result);
