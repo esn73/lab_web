@@ -77,11 +77,16 @@
 			var boardNo = $('#bno').val(); 
 			
 			// 게시글 번호(boardNo)에 달려 있는 모든 댓글 목록을 읽어오는 Ajax함수 정의
-			// $.getJSON(요청 URL,  콜백 함수): URL로 Ajax GET 요청을 보내고 JSON 문자열을 응답으로 전달받아서 처리.
-			$.getJSON('/ex02/replies/all/' + boardNo, function (data) {
-				console.log(data);
-			});
+			function getAllReplies() {
+				// $.getJSON(요청 URL,  콜백 함수): URL로 Ajax GET 요청을 보내고 JSON 문자열을 응답으로 전달받아서 처리.
+				// JSON 문자열을 응답으로 전달받아서 처리하는 함수.
+				$.getJSON('/ex02/replies/all/' + boardNo, function (data) {
+					console.log(data);
+				});
+			} //end getAllReplies()
 			
+			getAllReplies(); //함수 호출
+				
 		});
 		</script>
     </body>

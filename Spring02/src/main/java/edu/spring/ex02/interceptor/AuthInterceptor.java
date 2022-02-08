@@ -25,7 +25,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		log.info(">>>>> postHandle() 호출");
+		log.info(">>>>> preHandle() 호출");
 		
 		// 로그인 상태 여부 체크(1) 로그인 OK->진행, (2) 
 		HttpSession session = request.getSession();
@@ -67,7 +67,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		log.info("<<<<< preHandle() 호출");
+		log.info("<<<<< postHandle() 호출");
 	}
 	
 	// View(JSP 파일)가 호출되면서 화면(UI)가 완성된 이후 호출되는 메서드.
@@ -75,5 +75,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+		log.info("<<<<< afterCompletion() 호출");
 	}
 }
