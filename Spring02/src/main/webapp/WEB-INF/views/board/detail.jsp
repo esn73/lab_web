@@ -12,6 +12,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" 
         	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+		<style>
+		.reply_item {
+  			 margin: 16px;
+  			 border: 1px solid gray;
+		}
+		</style>
     </head>
     <body>
         <div class="container-fluid">
@@ -94,7 +100,7 @@
                     $(respText).each(function () {
                     	var date = new Date(this.regdate); // JavaScript Date 객체 생성
                     	var dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-                    	list += '<div>'
+                    	list += '<div class="reply_item">'
                     		   + '<input type="text" id="rno" name="rno" value="'
                     		   + this.rno
                     		   + '" readonly />'
@@ -109,8 +115,8 @@
                     		   + '" readonly />';
                     		   
                     	if (this.userid == '${signInUserId}')	 { // 댓글 작성자 아이디와 로그인한 사용자 아이디가 같으면
-                    		list += '<button id="reply_update">수정</button>'
-                    				+ '<button id="reply_delete">삭제</button>'
+                    		list += '<button class="reply_update">수정</button>'
+                    			  + '<button class="reply_delete">삭제</button>'
                     	}
                     	list += '</div>';
                     });
@@ -153,7 +159,7 @@
         			data: JSON.stringify({
         				'bno': boardNo,
         				'rtext' : replyText,
-        				'userid': replier
+	        				'userid': replier
         			}),
         			// 성공 응답이(200 response)이 왔을 때 브라우저가 실행할 콜백 함수 
         			success: function (resp) {
@@ -163,6 +169,34 @@
         			}
         		});
         	});
+        	
+        	// 수정, 삭제 버튼에 대한 이벤트 리스너는 버튼들이 만들어진 이후에 등록이 되어야 함!
+        	$('#replies').on('click', '.reply_item .reply_update', function () {
+        		// 수정 버튼이 포함된 div 요소에 포함된 rno와 rtext를 찾아서 Ajax PUT 요청을 보냄.        		
+        		//	*** $(this): 클래스 속성이 reply_update인 버튼 요소. 
+        		var rno = $(this).prevAll('#rno').val();
+        		var rtext = $(this).prevAll('#rtext').val();
+        		// alert('rno: ' + rno + '. rtext:' + rtext);
+        		
+        		$.ajax({
+        			// 요청 URL
+        			url: '/ex02/replies/' + rno, 
+        			// 요청 방식
+        			type: 'PUT',
+        			// 요청 패킷 헤더
+        			headers: {
+        				'Content-Type': 'application/json',
+        				'X-HTTP-Method-Override': 'PUT'
+        			},
+        			// 요청 패킷 데이터
+        			data: JSON.stringigfy({'rtext': rtext}),
+        			// 성공 응답 콜백 함수
+        			success: function () {
+        				alert(rno + ' 댓글 수정 성공!')
+        				getAllReplies(); //댓글 목록 업데이트
+        			}
+        		});
+        	}); 
         	
         });
         </script>
