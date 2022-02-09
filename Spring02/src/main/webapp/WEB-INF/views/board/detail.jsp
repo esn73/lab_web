@@ -136,7 +136,7 @@
         		// 댓글 insert 요청을 Ajax 방식으로 보냄.
         		$.ajax({
         			// 요청 주소
-        			url: 'ex02/replies',
+        			url: '/ex02/replies',
         			// 요청 타입
         			type: 'POST',
         			// 요청 HTTP 헤더
