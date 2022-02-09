@@ -61,7 +61,7 @@
             <div> <%-- 댓글 작성 양식(form) --%>
                 <input type="text" id="rtext" name="rtext" placeholder="댓글 입력"  />
                 <%-- 로그인한 사용자 아이디를 input의 값으로 설정 --%>
-                <input type="text" id="userid" name="userid" value="${signInUserId}" readonly />
+                <input type="text" id="reply_userid" name="userid" value="${signInUserId}" readonly />
                 <button id="btn_create_reply">댓글 작성 완료</button>
             </div>
             
@@ -106,8 +106,13 @@
                     		   + '" readonly />'
                     		   + '<input type="text" id="regdate" name="regdate" value="'
                     		   + dateStr
-                    		   + '" readonly />'
-                    		   + '</div>';
+                    		   + '" readonly />';
+                    		   
+                    	if (this.userid == '${signInUserId}')	 { // 댓글 작성자 아이디와 로그인한 사용자 아이디가 같으면
+                    		list += '<button id="reply_update">수정</button>'
+                    				+ '<button id="reply_delete">삭제</button>'
+                    	}
+                    	list += '</div>';
                     });
                     
                     // 완성된 HTML 문자열(list)를 div[id="replies"]의 하위 요소로 추가
@@ -131,7 +136,7 @@
         		}
         		
         		// 댓글 작성자 아이디
-        		var replier = $('#userid').val();
+        		var replier = $('#reply_userid').val();
         		
         		// 댓글 insert 요청을 Ajax 방식으로 보냄.
         		$.ajax({
@@ -152,6 +157,7 @@
         			}),
         			// 성공 응답이(200 response)이 왔을 때 브라우저가 실행할 콜백 함수 
         			success: function (resp) {
+        				$('#rtext').val(''); // input 문자열을 공백으로
         				console.log(resp)
         				getAllReplies(); // 댓글 목록 업데이트
         			}

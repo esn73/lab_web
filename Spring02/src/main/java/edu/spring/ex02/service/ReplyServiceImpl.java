@@ -25,4 +25,16 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDao.read(bno);
 	}
 
+	@Override
+	public int insert(Reply reply) {
+		// 댓글 테이블(replies)에 새로운 댓글 추가
+		int result= replyDao.create(reply);
+		
+		// 게시판 테이블(boards)에 댓글수를 업데이트
+		
+		// 댓글을 작성한 사용자에게 포인트를 지급
+		
+		return result;
+	}
+
 }
