@@ -36,5 +36,28 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return result;
 	}
+	
+	@Override
+	public int update(Reply reply) {
+		log.info("update({})", reply);
+		
+		// 댓글 테이블(replies) 업데이트
+		return replyDao.update(reply);
+	}
+	
+	@Override
+	public int delete(int rno) {
+		log.info("delete(rno={})", rno);
+		
+		// TODO: 댓글 번호가 rno인 댓글의 게시글 번호(bno)를 찾음.
+		
+		// 댓글 테이블(replies)에서 rno의 댓글 삭제.
+		int result = replyDao.delete(rno);
+		
+		// TODO: 댓글 삭제가 성공한 경우, 게시판 테이블(boards)에서 댓글 수를 감소.
+		
+		return result;
+	}
 
 }
+

@@ -55,5 +55,30 @@ public class ReplyRestController {
 		
 		return entity;
 	}
-
+	@RequestMapping(value="/{rno}", method = RequestMethod.PUT)
+	public ResponseEntity<Integer> updateReply(
+			@PathVariable(name = "rno") Integer rno,
+			@RequestBody Reply reply) {
+		log.info("updateReply(rno={}, reply={})", rno, reply);
+		reply.setRno(rno); // PathVariable 값으로 Reply 인스턴스의 rno 값(수정할 댓글 번호)을 설정.
+		
+		int result = replyService.update(reply);
+		
+		ResponseEntity<Integer> entity = new ResponseEntity<Integer>(result, HttpStatus.OK);
+		
+		return entity;
+	}
+	
+	@RequestMapping(value="/{rno}", method = RequestMethod.DELETE)
+	public ResponseEntity<Integer> deleteReply(@PathVariable(name="rno") Integer rno){
+		log.info("deleteReply(rno={})", rno);
+		
+		int result = replyService.delete(rno);
+		
+		ResponseEntity<Integer> entity = new ResponseEntity<Integer>(result, HttpStatus.OK);
+		
+		return entity;
+		
+	}
 }
+

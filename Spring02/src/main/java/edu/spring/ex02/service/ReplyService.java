@@ -8,4 +8,6 @@ public interface ReplyService {
 
 	List<Reply> select(int bno);
 	int insert(Reply reply);
+	int update(Reply reply);
+	int delete(int rno);
 }
