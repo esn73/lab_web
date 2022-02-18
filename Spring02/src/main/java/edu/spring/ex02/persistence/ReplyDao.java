@@ -10,4 +10,5 @@ public interface ReplyDao {
 	List<Reply> read(int bno);
 	int update(Reply reply);
 	int delete(int rno);
+	int readBno(int rno);
 }

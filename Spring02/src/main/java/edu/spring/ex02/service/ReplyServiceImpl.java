@@ -8,15 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.spring.ex02.domain.Reply;
+import edu.spring.ex02.persistence.BoardDao;
 import edu.spring.ex02.persistence.ReplyDao;
+import edu.spring.ex02.persistence.UserDao;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
 
 	private static final Logger log = LoggerFactory.getLogger(ReplyServiceImpl.class);
 	
-	@Autowired
+	@Autowired // 의존성 주입
 	private  ReplyDao replyDao;
+	@Autowired private BoardDao boardDao;
+	@Autowired private UserDao userDao;
+	
 	
 	@Override
 	public List<Reply> select(int bno) {
@@ -50,11 +55,13 @@ public class ReplyServiceImpl implements ReplyService {
 		log.info("delete(rno={})", rno);
 		
 		// TODO: 댓글 번호가 rno인 댓글의 게시글 번호(bno)를 찾음.
+		int bno = replyDao.readBno(rno);
 		
 		// 댓글 테이블(replies)에서 rno의 댓글 삭제.
 		int result = replyDao.delete(rno);
 		
 		// TODO: 댓글 삭제가 성공한 경우, 게시판 테이블(boards)에서 댓글 수를 감소.
+		boardDao.updateReplyCnt(bno, -1);
 		
 		return result;
 	}

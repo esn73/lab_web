@@ -48,4 +48,11 @@ public class ReplyDaoImpl implements ReplyDao{
 		
 	}
 
+	@Override
+	public int readBno(int rno) {
+		log.info("readBno(rno={})" , rno);
+		
+		return sqlSession.selectOne(NAMESPACE + ".readBno", rno);
+	}
+
 }

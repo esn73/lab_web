@@ -16,8 +16,10 @@
 		<property name="COL_REPLY_CNT" value="reply_cnt"/>
 		<property name="COL_ATTACHMENT" value="attachment"/>
 		
-		<!-- USERS 테이블 관련 상수들 -->
+		<!-- USERS 테이블 관련 상수들 -->		
 		<property name="TABLE_USERS" value="users"/>
+		
+		
 		<!-- BOARDS 테이블의 userid 컬럼 이름은 동일하므로 생략 -->
 		<property name="COL_PWD" value="pwd"/>
 		<property name="COL_EMAIL" value="email"/>

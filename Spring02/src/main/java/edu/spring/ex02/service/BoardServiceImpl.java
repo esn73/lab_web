@@ -63,7 +63,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Board> select(int searchType, String searchKeyword) {
-		log.info("select(serachType={}, serachType={}", searchType, searchKeyword);
+		log.info("select(serachType={}, searchKeyword={}", searchType, searchKeyword);
 		
 		return boardDao.read(searchType, searchKeyword);
 	}
